@@ -4,18 +4,27 @@
       <div class="card card-signin my-5">
         <div class="card-body">
           <h5 class="card-title text-center">ログイン</h5>
-          <form class="form-signin">
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-signin">
+
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+              <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <label for="inputEmail"></label>
             </div>
 
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
             </div>
             <hr class="my-4">
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+            <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
           </form>
+
+          <div *ngIf="errors && errors.length > 0">
+            <br>
+            <p *ngFor="let error of errors">
+              {{ error.detail }}
+            </p>
+          </div>
+
         </div>
       </div>
     </div>

@@ -28,6 +28,15 @@ class SampleUser {
     ]
   }
 
+  async initDb() {
+    await this.cleanDb();
+    this.pushUsertoDb();
+  }
+
+  async cleanDb() {
+    await User.deleteMany({});
+  }
+
   pushUsertoDb() {
     this.users.forEach((user) => {
       const newUser = new User(user);
