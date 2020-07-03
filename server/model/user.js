@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { strict } = require("assert");
 const { mainModule } = require("process");
+const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
  
@@ -23,6 +24,23 @@ const User = new Schema({
   },
   address: String,
   privateKey: String
+});
+
+User.methods.hasSamePassword = function(inputPassword) {
+  const user = this;
+  return bcrypt.compareSync(inputPassword, user.password);
+}
+
+User.pre('save', function(next) {
+  const saltRounds = 10;
+  const user = this;
+
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      user.password = hash;
+      next();
+    });
+  });
 });
 
 module.exports = mongoose.model('User', User);
