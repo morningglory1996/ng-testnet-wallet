@@ -22,12 +22,10 @@ export class LoginComponent implements OnInit {
 
 
   login(loginForm) {
-    console.log(loginForm.value);
     this.authService.login(loginForm.value).subscribe(
       (result) => {
-        console.log(result.token);
-        console.log(result.foundUser);
-        this.router.navigate(['/wallet/' + result.foundUser._id]);
+        this.router.navigate(['/']);
+        // this.router.navigate(['/wallet/' + result.userId]);
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error.errors;

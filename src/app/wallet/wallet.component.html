@@ -1,40 +1,24 @@
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+<div class="card">
+  <form #transactionForm="ngForm" (ngSubmit)="pushTransaction(transactionForm)" class="form-signin">
+
+    <div class="form-label-group">
+      <input ngModel name="recipient" type="text" id="inputEmail" class="form-control" placeholder="Address" required autofocus>
+      <label for="inputEmail"></label>
     </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+
+    <div class="form-label-group">
+      <input ngModel name="amount" type="number" id="inputPassword" class="form-control" placeholder="Amount" required>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
+    <hr class="my-4">
+    <button [disabled]="transactionForm.invalid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Send</button>
+  </form>
+  <p>
+    {{ balance }}
+  </p>
+  <!-- <div *ngIf="errors && errors.length > 0">
+    <br>
+    <p *ngFor="let error of errors">
+      {{ error.detail }}
+    </p>
+  </div> -->
 </div>
