@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { strict } = require("assert");
-const { mainModule } = require("process");
 const bcrypt = require('bcrypt');
+const bitcoin = require('bitcoinjs-lib');
+const network = bitcoin.networks.testnet;
 
 const Schema = mongoose.Schema;
  
@@ -32,8 +32,18 @@ User.methods.hasSamePassword = function(inputPassword) {
 }
 
 User.pre('save', function(next) {
-  const saltRounds = 10;
   const user = this;
+  const saltRounds = 10;
+
+  const keyPair = bitcoin.ECPair.makeRandom({ network: network });
+  const pkwif = keyPair.toWIF();
+  const { address } = bitcoin.payments.p2pkh({
+    pubkey: keyPair.publicKey,
+    network: network
+  });
+
+  user.address = address;
+  user.privateKey = pkwif;
 
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(user.password, salt, function(err, hash) {

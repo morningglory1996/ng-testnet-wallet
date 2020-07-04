@@ -8,6 +8,7 @@ const config = require('./config/index');
 const SampleUser = require('./sample-user');
 
 const userRouter = require('./routes/user');
+const walletRouter = require('./routes/wallet');
 const path = require('path');
 
 mongoose.connect(config.DB_URI, {
@@ -29,6 +30,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/wallet', walletRouter);
+
 
 if(process.env.NODE_ENV === 'production') {
   const appPath = path.join(__dirname, '..', 'dist', 'ng-testnet-wallet');

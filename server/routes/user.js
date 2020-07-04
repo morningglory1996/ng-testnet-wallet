@@ -35,7 +35,7 @@ router.post('/login', function(req, res) {
       userName: foundUser.userName
     }, config.SECRET, { expiresIn: '1h' });
 
-    return res.json({ token, foundUser });
+    return res.json({token, userId: foundUser.id});
   });
 });
 
