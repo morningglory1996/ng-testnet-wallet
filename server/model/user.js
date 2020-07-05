@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bitcoin = require('bitcoinjs-lib');
+const crypto = require('crypto-js');
+const config = require('../config/index');
+
 const network = bitcoin.networks.testnet;
 
 const Schema = mongoose.Schema;
@@ -42,8 +45,10 @@ User.pre('save', function(next) {
     network: network
   });
 
+  const encryptedPk = crypto.AES.encrypt(pkwif, config.KEY).toString();
+
   user.address = address;
-  user.privateKey = pkwif;
+  user.privateKey = encryptedPk;
 
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(user.password, salt, function(err, hash) {

@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const bitcoin = require('bitcoinjs-lib');
 const rp  = require('request-promise-native');
+const crypto = require('crypto-js');
 const User = require('../model/user');
 const UserCtrl = require('../controllers/user');
 
@@ -18,7 +19,7 @@ router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
 })
 
 
-router.get('/:userId', async function(req, res) {
+router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
   const userId = req.params.userId;
 
   const foundUser = await User.findById(userId, function(err, foundUser) {
@@ -53,7 +54,7 @@ router.get('/:userId', async function(req, res) {
 });
 
 
-router.post('/:userId', async function(req, res) {
+router.post('/:userId', UserCtrl.authMiddleware, async function(req, res) {
   const recipient = req.body.recipient;
   const amount = parseInt(req.body.amount, 10);
   const userId = req.params.userId;
@@ -82,8 +83,10 @@ router.post('/:userId', async function(req, res) {
     try {
       const sender = foundUser.address;
       const privateKey = foundUser.privateKey;
+
+      const decryptedPk = crypto.AES.decrypt(privateKey, config.KEY).toString(crypto.enc.Utf8);
       // generate keypair
-      const senderKeyPair = bitcoin.ECPair.fromWIF(privateKey, network);
+      const senderKeyPair = bitcoin.ECPair.fromWIF(decryptedPk, network);
       // create transactionBuilder
       const txb = new bitcoin.TransactionBuilder(network);
       txb.setVersion(1);
@@ -140,6 +143,7 @@ router.post('/:userId', async function(req, res) {
       const result = await rp(pushOptions);
       res.json(result);
     } catch(err) {
+      console.log(err);
       return res.status(422).send({ errors: [{ title: 'Transaction error', detail: '送金に失敗しました' }]});
     }
   }
