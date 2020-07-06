@@ -1,0 +1,50 @@
+<mat-toolbar color="primary" *ngIf="!(isHandset$ | async)">
+  <span>Testnet Wallet</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
+  <mat-sidenav #drawer class="sidenav"
+      [fixedTopGap]="(isHandset$ | async) ? 0 : 64"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list *ngIf="authService.isAuthenticated()">
+      <a mat-list-item (click)="toWalletPage();closeSideNav()">
+        <mat-icon>account_balance_wallet</mat-icon>
+        Wallet
+      </a>
+      <a mat-list-item (click)="logout();closeSideNav()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="!authService.isAuthenticated()">
+      <a id="login" mat-list-item [routerLink]="['/login']" (click)="closeSideNav();">
+        <mat-icon aria-label="login">login</mat-icon>
+        Login
+      </a>
+      <a mat-list-item [routerLink]="['/register']" (click)="closeSideNav()">
+        <mat-icon>how_to_reg</mat-icon>
+        Register
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="(isHandset$ | async)">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Testnet Wallet</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

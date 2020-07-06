@@ -44,8 +44,7 @@ router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
       };
     
       const data = await rp(options);
-      const balance = data.final_balance;
-      return res.json(balance);
+      return res.json(data);
 
     } catch(err) {
       return res.status(422).send({ errors: [{ title: 'Request error', detail: '問題が発生しました' }]});

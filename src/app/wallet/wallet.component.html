@@ -1,4 +1,103 @@
-<div class="card">
+<div class="grid-container">
+  <h1 class="mat-h1">{{ userName }}さんのウォレット</h1>
+  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Address</mat-card-title>
+          <mat-card-subtitle>アドレス</mat-card-subtitle>
+        </mat-card-header>
+        <mat-icon mat-card-image class="card-images">qr_code</mat-icon>
+        <mat-card-content>
+          <h3>{{ address }}</h3>
+        </mat-card-content>
+        <mat-card-actions  style="margin-top: 30px;">
+          <button mat-button>
+            <mat-icon >content_paste</mat-icon>
+            COPY
+          </button>
+          <button mat-button>
+            <mat-icon >qr_code_scanner</mat-icon>
+            QR
+          </button>
+          <button (click)="openDialog()">
+            kurikku
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Balance</mat-card-title>
+          <mat-card-subtitle>残高</mat-card-subtitle>
+        </mat-card-header>
+        <mat-icon mat-card-image class="card-images">account_balance_wallet</mat-icon>
+        <mat-card-content>
+          <h1>{{ balance }} BTC</h1>
+          <p> → ￥12767.1
+          </p>
+          <p style="margin-top:40px;">BTC Price in JPY → 98266.1</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Send & Receive</mat-card-title>
+          <mat-card-subtitle>送受信</mat-card-subtitle>
+        </mat-card-header>
+        <mat-icon mat-card-image class="card-images">compare_arrows</mat-icon>
+        <mat-card-content>
+          <h3>Total Sent → 0.25BTC</h3>
+          <h3>Total Received → 0.25BTC</h3>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>
+            <mat-icon>send</mat-icon>
+            Send
+          </button>
+          <button mat-button>
+            <mat-icon>arrow_circle_down</mat-icon>
+            Receive
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Transactions</mat-card-title>
+          <mat-card-subtitle>取引</mat-card-subtitle>
+        </mat-card-header>
+        <mat-icon mat-card-image class="card-images">list_alt</mat-icon>
+        <mat-card-content>
+          <h2>
+            <span matBadge="4" matBadgeOverlap="false">Unconfirmed Transactions</span>
+          </h2>
+          <button mat-button>
+            <mat-icon>search</mat-icon>
+            View Details
+          </button>
+          <h2>
+            <span matBadge="4" matBadgeOverlap="false">Confirmed Transactions</span>
+          </h2>
+          <button mat-button>
+            <mat-icon>search</mat-icon>
+            View Details
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+</div>
+
+<!-- <div class="card">
   <form #transactionForm="ngForm" (ngSubmit)="pushTransaction(transactionForm)" class="form-signin">
 
     <div class="form-label-group">
@@ -15,10 +114,10 @@
   <p>
     {{ balance }}
   </p>
-  <!-- <div *ngIf="errors && errors.length > 0">
+  <div *ngIf="errors && errors.length > 0">
     <br>
     <p *ngFor="let error of errors">
       {{ error.detail }}
     </p>
-  </div> -->
-</div>
+  </div>
+</div> -->
