@@ -15,21 +15,21 @@
     <mat-nav-list *ngIf="authService.isAuthenticated()">
       <a mat-list-item (click)="toWalletPage();closeSideNav()">
         <mat-icon>account_balance_wallet</mat-icon>
-        Wallet
+        ウォレット
       </a>
       <a mat-list-item (click)="logout();closeSideNav()">
         <mat-icon>logout</mat-icon>
-        Logout
+        ログアウト
       </a>
     </mat-nav-list>
     <mat-nav-list *ngIf="!authService.isAuthenticated()">
       <a id="login" mat-list-item [routerLink]="['/login']" (click)="closeSideNav();">
         <mat-icon aria-label="login">login</mat-icon>
-        Login
+        ログイン
       </a>
       <a mat-list-item [routerLink]="['/register']" (click)="closeSideNav()">
         <mat-icon>how_to_reg</mat-icon>
-        Register
+        登録する
       </a>
     </mat-nav-list>
   </mat-sidenav>

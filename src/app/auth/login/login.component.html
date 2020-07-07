@@ -1,42 +1,51 @@
-<mat-grid-list [cols]="1" rowHeight="600px">
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <mat-card style="text-align: center;">
-      <mat-card-title>Login</mat-card-title>
-      <mat-card-content>
-        <mat-icon mat-card-image style="font-size: 50px;margin-top: 30px;">account_circle</mat-icon>
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-signin">
-    
-          <p style="margin-top: 20px;">
-            <mat-form-field appearance="standard">
-              <mat-label>Eメールアドレスを入力してください</mat-label>
-              <input matInput ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
-              <label for="inputEmail"></label>
-            </mat-form-field>
-          </p>
-    
-          <p>
-            <mat-form-field appearance="standard">
-              <mat-label>パスワードを入力してください</mat-label>
-              <input matInput ngModel name="password" [type]="hide ? 'password' : 'text'" id="inputPassword" class="form-control" placeholder="passwrod" required>
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-          </p>
+<div class="card-container">
+  <h1 class="mat-h1">ログイン</h1>
+  <mat-card style="text-align: center;">
+    <mat-card-title>ログイン</mat-card-title>
+    <mat-card-content>
+      <mat-icon mat-card-image style="font-size: 50px;margin-top: 30px;">account_circle</mat-icon>
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+  
+        <p style="margin-top: 20px;">
+          <mat-form-field appearance="standard">
+            <mat-label>Eメールアドレス</mat-label>
+            <input matInput formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+            <label for="inputEmail"></label>
+            <mat-error *ngIf="email.invalid">{{emailErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </p>
+  
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>パスワード</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" id="inputPassword" class="form-control" placeholder="passwrod" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.invalid">{{passwordErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </p>
 
-          <button  mat-flat-button color="primary" [disabled]="loginForm.invalid" style="width: 70%;margin-top: 20px;" type="submit">ログイン</button>
-        </form>
-      </mat-card-content>
-      <mat-card-footer>
-        <button mat-button>
-          <a [routerLink]="['/register']" style="text-decoration: none;color: rgba(0,0,0,.87);;">
-            アカウントを作成
-          </a>
-        </button>
-      </mat-card-footer>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+        <div>
+          <mat-error *ngFor="let error of errors">
+            {{ error.detail }}
+          </mat-error>
+        </div>
+
+        <button mat-flat-button color="primary" [disabled]="loginForm.invalid" style="width: 70%;margin-top: 50px;" type="submit">ログイン</button>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-button>
+        <a [routerLink]="['/register']" style="text-decoration: none;color: rgba(0,0,0,.87);;">
+          アカウントを作成
+        </a>
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>
+
+
 
 
 
@@ -49,12 +58,12 @@
           <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-signin">
 
             <div class="form-label-group">
-              <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+              <input formControlName="email" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <label for="inputEmail"></label>
             </div>
 
             <div class="form-label-group">
-              <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <input formControlName="email" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
             </div>
             <hr class="my-4">
             <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
