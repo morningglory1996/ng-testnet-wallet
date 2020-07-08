@@ -27,7 +27,7 @@ const User = new Schema({
   },
   address: {
     type: String,
-    required: ture
+    required: true
   },
   privateKey: {
     type: String,
