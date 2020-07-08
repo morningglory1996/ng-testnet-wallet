@@ -31,7 +31,7 @@ const User = new Schema({
   },
   privateKey: {
     type: String,
-    required: ture
+    required: true
   }
 });
 
