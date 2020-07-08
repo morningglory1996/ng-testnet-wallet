@@ -13,12 +13,6 @@ const network = bitcoin.networks[networkName];
 
 const config = require('../config/index');
 
-
-router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
-  return res.json({ "secret" : true });
-})
-
-
 router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
   const userId = req.params.userId;
 
@@ -56,6 +50,7 @@ router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
 router.post('/:userId', UserCtrl.authMiddleware, async function(req, res) {
   const recipient = req.body.recipient;
   const amount = parseInt(req.body.amount, 10);
+  const fee = parseInt(req.body.fee, 10);
   const userId = req.params.userId;
 
   if(!recipient) {
@@ -118,7 +113,6 @@ router.post('/:userId', UserCtrl.authMiddleware, async function(req, res) {
         });
       }
 
-      const fee = 500;
       const change = balance - (amount + fee);
 
       txb.addOutput(recipient, amount);

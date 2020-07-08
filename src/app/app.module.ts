@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopComponent } from './top/top.component';
 import { WalletModule } from './wallet/wallet.module';
+import { DialogModule } from './dialog/dialog.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -18,7 +19,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
-import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -26,8 +26,7 @@ import { DialogComponent } from './dialog/dialog.component';
     AppComponent,
     TopComponent,
     NavComponent,
-    DashboardComponent,
-    DialogComponent
+    DashboardComponent
 
   ],
   imports: [
@@ -45,7 +44,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatCardModule,
     MatMenuModule,
     MatBadgeModule,
-    WalletModule
+    WalletModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

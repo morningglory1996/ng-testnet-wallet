@@ -11,18 +11,11 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-
   userName = new FormControl('', [Validators.required, Validators.maxLength(15)]);
-
   email = new FormControl('', [Validators.required, Validators.email]);
-
   password = new FormControl('',[Validators.required, Validators.minLength(6)]);
-
   confirmPassword = new FormControl('',[Validators.required]);
-
-  
   hide = true;
-
   errors = [];
 
   constructor(
@@ -30,7 +23,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup ({
+    this.registerForm = new FormGroup({
       userName: this.userName,
       email: this.email,
       password: this.password,

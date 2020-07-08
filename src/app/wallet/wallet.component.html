@@ -20,9 +20,6 @@
             <mat-icon >qr_code_scanner</mat-icon>
             QR
           </button>
-          <button (click)="openDialog()">
-            kurikku
-          </button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
@@ -36,8 +33,7 @@
         <mat-icon mat-card-image class="card-images">account_balance_wallet</mat-icon>
         <mat-card-content>
           <h1>{{ balance }} BTC</h1>
-          <p> → ￥12767.1
-          </p>
+          <p> → ￥12767.1</p>
           <p style="margin-top:40px;">BTC Price in JPY → 98266.1</p>
         </mat-card-content>
       </mat-card>
@@ -51,11 +47,11 @@
         </mat-card-header>
         <mat-icon mat-card-image class="card-images">compare_arrows</mat-icon>
         <mat-card-content>
-          <h3>Total Sent → 0.25BTC</h3>
-          <h3>Total Received → 0.25BTC</h3>
+          <h3>Total Sent → {{ totalSent }}BTC</h3>
+          <h3>Total Received → {{ totalReceived }}BTC</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>
+          <button mat-button (click)="openDialog()">
             <mat-icon>send</mat-icon>
             Send
           </button>
@@ -76,14 +72,14 @@
         <mat-icon mat-card-image class="card-images">list_alt</mat-icon>
         <mat-card-content>
           <h2>
-            <span matBadge="4" matBadgeOverlap="false">Unconfirmed Transactions</span>
+            <span [matBadge]="unconfirmed" matBadgeOverlap="false">Unconfirmed Transactions</span>
           </h2>
           <button mat-button>
             <mat-icon>search</mat-icon>
             View Details
           </button>
           <h2>
-            <span matBadge="4" matBadgeOverlap="false">Confirmed Transactions</span>
+            <span [matBadge]="transactions" matBadgeOverlap="false">Confirmed Transactions</span>
           </h2>
           <button mat-button>
             <mat-icon>search</mat-icon>
