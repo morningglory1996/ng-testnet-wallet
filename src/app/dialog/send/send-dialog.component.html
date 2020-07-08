@@ -1,0 +1,30 @@
+<button mat-button (click)="close()" style="float: right;">
+  <mat-icon>close</mat-icon>
+</button>
+<h1 mat-dialog-title>ビットコインを送る</h1>
+<div mat-dialog-content style="text-align: center;">
+  <form [formGroup]="sendingForm" (ngSubmit)="sendTx(sendingForm)">
+    
+      <mat-form-field appearance="standard">
+        <mat-label>宛先</mat-label>
+        <input matInput formControlName="recipient" type="text" placeholder="recipient" required autofocus>
+        <mat-error *ngIf="recipient.invalid">{{ recipientErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="standard">
+        <mat-label>送金額</mat-label>
+        <input matInput formControlName="amount" type="number" placeholder="amount" required autofocus>
+        <mat-error *ngIf="amount.invalid">{{ amountErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="standard">
+        <mat-label>手数料</mat-label>
+        <input matInput formControlName="fee" type="number" placeholder="fee" required autofocus>
+        <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="sendingForm.invalid" type="submit">送金</button>
+  </form>
+</div>

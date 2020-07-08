@@ -25,8 +25,14 @@ const User = new Schema({
     min:(6, 'パスワードは6文字以上で入力して下さい'),
     max:(30, 'パスワードは最大30文字まで')
   },
-  address: String,
-  privateKey: String
+  address: {
+    type: String,
+    required: ture
+  },
+  privateKey: {
+    type: String,
+    required: ture
+  }
 });
 
 User.methods.hasSamePassword = function(inputPassword) {
