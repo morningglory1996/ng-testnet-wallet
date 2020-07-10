@@ -1,6 +1,6 @@
 <div class="grid-container">
   <h1 class="mat-h1">{{ userName }}さんのウォレット</h1>
-  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
+  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 2" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -33,7 +33,7 @@
         <mat-icon mat-card-image class="card-images">account_balance_wallet</mat-icon>
         <mat-card-content>
           <h1>{{ balance }} BTC</h1>
-          <p> → ￥12767.1</p>
+          <p> → ￥{{(btcPrice * balance).toFixed(0)}}</p>
           <p style="margin-top:40px;">BTC Price in JPY → 98266.1</p>
         </mat-card-content>
       </mat-card>
@@ -78,7 +78,7 @@
             <mat-icon>search</mat-icon>
             View Details
           </button>
-          <h2>
+          <h2  style="margin-top: 15px;">
             <span [matBadge]="transactions.length" matBadgeOverlap="false">Confirmed Transactions</span>
           </h2>
           <button mat-button (click)="txDialog()">

@@ -23,6 +23,7 @@ export class WalletComponent implements OnInit {
   transactions: [];
   totalSent: number;
   totalReceived: number;
+  btcPrice: number;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -54,6 +55,7 @@ export class WalletComponent implements OnInit {
   uncTxDialog(): void {
     this.dialog.open(UncTxDialogComponent, {
       data: this.unconfirmed,
+      height: '500px',
       disableClose: true
     });
   }
@@ -61,6 +63,7 @@ export class WalletComponent implements OnInit {
   txDialog() {
     this.dialog.open(TxDialogComponent, {
       data: this.transactions,
+      height: '500px',
       disableClose: true
     });
   }
@@ -79,6 +82,7 @@ export class WalletComponent implements OnInit {
         this.transactions = data.filterTxs;
         this.totalSent = data.totalSent * 1e-8;
         this.totalReceived = data.totalReceived * 1e-8;
+        this.btcPrice = data.currentJPY;
       },
       (err) => {
         console.log(err);
