@@ -32,7 +32,6 @@ app.use(bodyParser.json());
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/wallet', walletRouter);
 
-
 if(process.env.NODE_ENV === 'production') {
   const appPath = path.join(__dirname, '..', 'dist', 'ng-testnet-wallet');
   app.use(express.static(appPath));
