@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 10px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: blue;
+}

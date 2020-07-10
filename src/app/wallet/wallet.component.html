@@ -51,7 +51,7 @@
           <h3>Total Received → {{ totalReceived }}BTC</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="openDialog()">
+          <button mat-button (click)="sendDialog()">
             <mat-icon>send</mat-icon>
             Send
           </button>
@@ -72,16 +72,16 @@
         <mat-icon mat-card-image class="card-images">list_alt</mat-icon>
         <mat-card-content>
           <h2>
-            <span [matBadge]="unconfirmed" matBadgeOverlap="false">Unconfirmed Transactions</span>
+            <span [matBadge]="unconfirmed.length" matBadgeOverlap="false">Unconfirmed Transactions</span>
           </h2>
-          <button mat-button>
+          <button mat-button (click)="uncTxDialog()">
             <mat-icon>search</mat-icon>
             View Details
           </button>
           <h2>
-            <span [matBadge]="transactions" matBadgeOverlap="false">Confirmed Transactions</span>
+            <span [matBadge]="transactions.length" matBadgeOverlap="false">Confirmed Transactions</span>
           </h2>
-          <button mat-button>
+          <button mat-button (click)="txDialog()">
             <mat-icon>search</mat-icon>
             View Details
           </button>

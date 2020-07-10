@@ -5,6 +5,7 @@ const router = express.Router();
 const bitcoin = require('bitcoinjs-lib');
 const rp  = require('request-promise-native');
 const crypto = require('crypto-js');
+const moment = require('moment-timezone');
 const User = require('../model/user');
 const UserCtrl = require('../controllers/user');
 
@@ -12,6 +13,15 @@ const networkName = 'testnet';
 const network = bitcoin.networks[networkName];
 
 const config = require('../config/index');
+
+function filterBytxHash (array) {
+  const itemTxIds = array.map((item) => {
+      return item.txId;
+  });
+  return array.filter((item, index) => {
+      return itemTxIds.indexOf(item.txId) === index;
+  });
+};
 
 router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
   const userId = req.params.userId;
@@ -36,9 +46,52 @@ router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
         method: 'GET',
         json: true
       };
-    
+
       const data = await rp(options);
-      return res.json(data);
+      const balance = data.final_balance;
+      let unconfirmedTxs = [];
+      let txs = [];
+
+      if(data.unconfirmed_txrefs) {
+        for(let i = 0; i < data.unconfirmed_txrefs.length; i++) {
+          const txId = data.unconfirmed_txrefs[i].tx_hash;
+          const timeStamp = moment(data.unconfirmed_txrefs[i].received).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
+          const obj = { txId, timeStamp };
+          unconfirmedTxs.push(obj);
+        }
+      }
+      if(data.txrefs) {
+        for(let i = 0; i < data.txrefs.length; i++) {
+          const txId = data.txrefs[i].tx_hash;
+          const blockHeight = data.txrefs[i].block_height;
+          const value = data.txrefs[i].value;
+          const timeStamp = moment(data.txrefs[i].confirmed).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
+          let confirmations = data.txrefs[i].confirmations;
+          if (confirmations > 6) {
+            confirmations = '6+';
+          }
+          const obj = { txId, timeStamp, confirmations, blockHeight, value };
+          txs.push(obj);
+        }
+      }
+
+      const filterUnTxs = filterBytxHash(unconfirmedTxs);
+      const filterTxs = filterBytxHash(txs);
+      const totalReceived = data.total_received;
+      const totalSent = data.total_sent;
+      const numberTx = data.final_n_tx;
+      const numberUnTx = data.unconfirmed_n_tx;
+
+      const getPrice = {
+        url: `https://blockchain.info/ticker`,
+        method: 'GET',
+        json: true
+      }
+
+      const price = await rp(getPrice);
+      const currentJPY = price.JPY.last;
+
+      return res.json({address, balance, filterUnTxs, filterTxs, totalReceived, totalSent, numberTx, numberUnTx, currentJPY});
 
     } catch(err) {
       return res.status(422).send({ errors: [{ title: 'Request error', detail: '問題が発生しました' }]});

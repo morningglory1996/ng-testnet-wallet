@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
 
 import { SendDialogComponent } from '../dialog/send/send-dialog.component'
+import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.component';
+import { TxDialogComponent } from '../dialog/tx-dialog/tx-dialog.component';
 
 @Component({
   selector: 'app-wallet',
@@ -17,8 +19,8 @@ export class WalletComponent implements OnInit {
   userName: string;
   balance: number;
   address: string;
-  unconfirmed: number;
-  transactions: number;
+  unconfirmed: [];
+  transactions: [];
   totalSent: number;
   totalReceived: number;
 
@@ -40,10 +42,25 @@ export class WalletComponent implements OnInit {
     this.getAddressDetail();
   }
 
-  openDialog(): void {
+  sendDialog(): void {
     this.dialog.open(SendDialogComponent, {
       height: '400px',
       width: '600px',
+      disableClose: true
+    });
+  }
+
+  
+  uncTxDialog(): void {
+    this.dialog.open(UncTxDialogComponent, {
+      data: this.unconfirmed,
+      disableClose: true
+    });
+  }
+
+  txDialog() {
+    this.dialog.open(TxDialogComponent, {
+      data: this.transactions,
       disableClose: true
     });
   }
@@ -55,13 +72,13 @@ export class WalletComponent implements OnInit {
   getAddressDetail() {
     this.walletService.getAddressDetail().subscribe(
       (data) => {
-        console.log(data);
+        console.log(data.filterUnTxs);
+        this.balance = data.balance * 1e-8;
         this.address = data.address;
-        this.balance = data.final_balance;
-        this.unconfirmed = data.unconfirmed_n_tx;
-        this.transactions = data.final_n_tx;
-        this.totalSent = data.total_sent;
-        this.totalReceived = data.totalReceived;
+        this.unconfirmed = data.filterUnTxs;
+        this.transactions = data.filterTxs;
+        this.totalSent = data.totalSent * 1e-8;
+        this.totalReceived = data.totalReceived * 1e-8;
       },
       (err) => {
         console.log(err);
