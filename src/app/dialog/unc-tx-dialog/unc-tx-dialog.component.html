@@ -2,7 +2,7 @@
   <mat-icon>close</mat-icon>
 </button>
 <h1 mat-dialog-title>未承認トランザクション</h1>
-<table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="text-align: center;">
+<table [style.table-layout]="(isHandset$ | async) ? 'fixed' : 'auto'" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
