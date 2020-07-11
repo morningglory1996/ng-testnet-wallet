@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { WalletService } from '../../wallet/wallet.service'
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-send-dialog',
@@ -17,7 +18,7 @@ export class SendDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : any,
     public dialogRef: MatDialogRef<SendDialogComponent>,
-    private walletService: WalletService
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -47,14 +48,10 @@ export class SendDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  sendTx(sendingForm) {
-    this.walletService.pushTransaction(sendingForm.value).subscribe(
-      (result) => {
-        console.log(result);
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
+  openConfirm(sendingForm) {
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: sendingForm.value
+    });
   }
 }

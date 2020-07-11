@@ -3,7 +3,7 @@
 </button>
 <h1 mat-dialog-title>ビットコインを送る</h1>
 <div mat-dialog-content style="text-align: center;">
-  <form [formGroup]="sendingForm" (ngSubmit)="sendTx(sendingForm)">
+  <form [formGroup]="sendingForm" (ngSubmit)="openConfirm(sendingForm)">
     
       <mat-form-field appearance="standard">
         <mat-label>宛先</mat-label>
