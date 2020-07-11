@@ -1,6 +1,6 @@
 <div class="grid-container">
   <h1 class="mat-h1">{{ userName }}さんのウォレット</h1>
-  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 2" rowHeight="400px">
+  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>

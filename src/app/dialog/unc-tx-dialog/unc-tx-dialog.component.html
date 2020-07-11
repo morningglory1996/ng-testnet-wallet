@@ -17,7 +17,7 @@
   <ng-container matColumnDef="txId">
     <th mat-header-cell *matHeaderCellDef> Hash </th>
     <td mat-cell *matCellDef="let element">
-      <a [href]="['https://tbtc.bitaps.com/' + element.txId]">{{element.txId}}</a>
+      <a [href]="['https://tbtc.bitaps.com/' + element.txId]" target=”_blank” rel=”noopener”>{{element.txId}}</a>
     </td>
   </ng-container>
 

@@ -1,0 +1,51 @@
+<div *ngIf="confirmMsg">
+  <p style="text-align: center;margin-bottom: 0;">
+    <mat-icon>error_outline</mat-icon>
+  </p>
+  <h2 mat-dialog-title style="text-align: center;">以下の内容で宜しいですか？</h2>
+  <hr>
+  <div mat-dialog-content>
+    <p>宛先: 
+      <strong>{{data.recipient}}</strong>
+    </p>
+    <p>金額: 
+      <strong>{{data.amount}}BTC</strong>
+    </p>
+    <p>手数料: 
+      <strong>
+        {{data.fee}}BTC
+      </strong>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">キャンセル</button>
+    <button mat-raised-button color="primary" (click)="sendTx(); spinnerShow()" cdkFocusInitial>OK</button>
+  </div>
+</div>
+
+<div *ngIf="spinner">
+  <h2 mat-dialog-title style="text-align: center;">送金中...</h2>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="sendingMsg">
+  <p style="text-align: center;">
+    <mat-icon>check_circle_outline</mat-icon>
+  </p>
+  <h2 mat-dialog-title style="text-align: center;">送金完了</h2>
+  <span>TXID:
+    <a [href]="['https://tbtc.bitaps.com/' + txId]" target=”_blank” rel=”noopener”> {{txId}}</a>
+  </span>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;">OK</button>
+</div>
+
+<div *ngIf="errorMsg">
+  <p style="text-align: center;">
+    <mat-icon>error_outline</mat-icon>
+  </p>
+  <h2 mat-dialog-title style="text-align: center;">エラー</h2>
+  <p>送金に失敗しました。入力内容を確認してください。</p>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;">OK</button>
+</div>
+
+

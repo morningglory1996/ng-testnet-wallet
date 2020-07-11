@@ -19,8 +19,8 @@ export class WalletComponent implements OnInit {
   userName: string;
   balance: number;
   address: string;
-  unconfirmed: [];
-  transactions: [];
+  unconfirmed: [] = [];
+  transactions: [] = [];
   totalSent: number;
   totalReceived: number;
   btcPrice: number;
@@ -75,7 +75,6 @@ export class WalletComponent implements OnInit {
   getAddressDetail() {
     this.walletService.getAddressDetail().subscribe(
       (data) => {
-        console.log(data.filterUnTxs);
         this.balance = data.balance * 1e-8;
         this.address = data.address;
         this.unconfirmed = data.filterUnTxs;
@@ -90,14 +89,4 @@ export class WalletComponent implements OnInit {
     )
   }
 
-  pushTransaction(transactionForm) {
-    this.walletService.pushTransaction(transactionForm.value).subscribe(
-      (result) => {
-        console.log(result);
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
-  }
 }
