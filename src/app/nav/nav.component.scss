@@ -1,4 +1,5 @@
 .sidenav-container {
+  color: rgb(68, 68, 68);
   height: 100%;
 }
 
@@ -14,6 +15,7 @@
   position: sticky;
   top: 0;
   z-index: 2;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
 }
 
 
@@ -26,3 +28,16 @@
     margin-right: 20px;
   }
 }
+
+.mat-toolbar.mat-toolbar.ng-tns-c163-0.mat-toolbar-single-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mat-drawer-side {
+  border-right: solid 2px rgba(0,0,0,.12);
+}
+
+
+
+
+

@@ -6,7 +6,7 @@
   <hr>
   <div mat-dialog-content>
     <p>宛先: 
-      <strong>{{data.recipient}}</strong>
+      <strong style="word-wrap: break-word;">{{data.recipient}}</strong>
     </p>
     <p>金額: 
       <strong>{{data.amount}} satoshi</strong>
@@ -36,7 +36,7 @@
   <span>TXID:
     <a [href]="['https://tbtc.bitaps.com/' + txId]" target=”_blank” rel=”noopener”> {{txId}}</a>
   </span>
-  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;">OK</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;margin-top: 30px;">OK</button>
 </div>
 
 <div *ngIf="errorMsg">

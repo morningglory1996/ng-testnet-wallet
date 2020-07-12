@@ -24,6 +24,8 @@ export class WalletComponent implements OnInit {
   totalSent: number;
   totalReceived: number;
   btcPrice: number;
+  spinner: boolean;
+  wallet: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -74,6 +76,8 @@ export class WalletComponent implements OnInit {
   }
 
   getAddressDetail() {
+    this.wallet = false;
+    this.spinner = true;
     this.walletService.getAddressDetail().subscribe(
       (data) => {
         this.balance = data.balance;
@@ -83,6 +87,8 @@ export class WalletComponent implements OnInit {
         this.totalSent = data.totalSent;
         this.totalReceived = data.totalReceived;
         this.btcPrice = data.currentJPY;
+        this.spinner = false;
+        this.wallet = true;
       },
       (err) => {
         console.log(err);
