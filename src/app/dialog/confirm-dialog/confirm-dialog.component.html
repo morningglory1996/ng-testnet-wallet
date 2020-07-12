@@ -9,11 +9,11 @@
       <strong>{{data.recipient}}</strong>
     </p>
     <p>金額: 
-      <strong>{{data.amount}}BTC</strong>
+      <strong>{{data.amount}} satoshi</strong>
     </p>
     <p>手数料: 
       <strong>
-        {{data.fee}}BTC
+        {{data.fee}} satoshi
       </strong>
     </p>
   </div>
@@ -40,7 +40,7 @@
 </div>
 
 <div *ngIf="errorMsg">
-  <p style="text-align: center;">
+  <p style="text-align:center;">
     <mat-icon>error_outline</mat-icon>
   </p>
   <h2 mat-dialog-title style="text-align: center;">エラー</h2>

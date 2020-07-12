@@ -1,5 +1,7 @@
 <div class="grid-container">
-  <h1 class="mat-h1">{{ userName }}さんのウォレット</h1>
+  <h1 class="mat-h1" style="float: left;">{{ userName }}さんのウォレット</h1>
+  <mat-icon style="font-size: 30px;margin-left: 10px;cursor: pointer;">cached</mat-icon>
+
   <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
@@ -32,9 +34,9 @@
         </mat-card-header>
         <mat-icon mat-card-image class="card-images">account_balance_wallet</mat-icon>
         <mat-card-content>
-          <h1>{{ balance }} BTC</h1>
-          <p> → ￥{{(btcPrice * balance).toFixed(0)}}</p>
-          <p style="margin-top:40px;">BTC Price in JPY → 98266.1</p>
+          <h1>{{balance}} satoshi</h1>
+          <p> → ￥{{((btcPrice * 1e-8) * balance).toFixed(2)}}</p>
+          <p style="margin-top:40px;">BTC Price in JPY → ￥ {{btcPrice}}</p>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -47,8 +49,8 @@
         </mat-card-header>
         <mat-icon mat-card-image class="card-images">compare_arrows</mat-icon>
         <mat-card-content>
-          <h3>Total Sent → {{ totalSent }}BTC</h3>
-          <h3>Total Received → {{ totalReceived }}BTC</h3>
+          <h3>Total Sent → {{ totalSent }} satoshi</h3>
+          <h3>Total Received → {{ totalReceived }} satoshi</h3>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button (click)="sendDialog()">

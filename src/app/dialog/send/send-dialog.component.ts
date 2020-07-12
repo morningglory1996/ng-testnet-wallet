@@ -14,6 +14,7 @@ export class SendDialogComponent implements OnInit {
   amount = new FormControl('',[Validators.required, Validators.min(1)]);
   recipient = new FormControl('',[Validators.required]);
   fee = new FormControl('',[Validators.required]);
+  convertJPY:number = 0;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data : any,
