@@ -1,6 +1,6 @@
-<div class="grid-container">
+<div *ngIf="wallet" class="grid-container">
   <h1 class="mat-h1" style="float: left;">{{ userName }}さんのウォレット</h1>
-  <mat-icon style="font-size: 30px;margin-left: 10px;cursor: pointer;">cached</mat-icon>
+  <mat-icon (click)="getAddressDetail()" style="font-size: 30px;cursor: pointer;">cached</mat-icon>
 
   <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -11,7 +11,7 @@
         </mat-card-header>
         <mat-icon mat-card-image class="card-images">qr_code</mat-icon>
         <mat-card-content>
-          <h3>{{ address }}</h3>
+          <h2>{{ address }}</h2>
         </mat-card-content>
         <mat-card-actions  style="margin-top: 30px;">
           <button mat-button>
@@ -93,6 +93,10 @@
 
   </mat-grid-list>
 
+</div>
+
+<div class="spinner" *ngIf="spinner">
+  <mat-spinner></mat-spinner>
 </div>
 
 <!-- <div class="card">

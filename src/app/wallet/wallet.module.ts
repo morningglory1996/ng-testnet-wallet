@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from "@angular/material/dialog";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   { path: 'wallet/:userId', component: WalletComponent, canActivate: [AuthGuard]}
@@ -32,7 +33,8 @@ const routes: Routes = [
     MatCardModule,
     MatMenuModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     WalletService

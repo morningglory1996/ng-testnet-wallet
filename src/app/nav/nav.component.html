@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" *ngIf="!(isHandset$ | async)">
-  <span>Testnet Wallet</span>
+  <span [routerLink]="['/']">Testnet Wallet</span>
   <span class="example-spacer"></span>
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
