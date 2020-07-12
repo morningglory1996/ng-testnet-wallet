@@ -102,8 +102,8 @@ router.get('/:userId',  UserCtrl.authMiddleware, async function(req, res) {
 
 router.post('/:userId', UserCtrl.authMiddleware, async function(req, res) {
   const recipient = req.body.recipient;
-  const amount = parseInt(req.body.amount, 10);
-  const fee = parseInt(req.body.fee, 10);
+  const amount = req.body.amount
+  const fee = req.body.fee;
   const userId = req.params.userId;
 
   if(!recipient) {

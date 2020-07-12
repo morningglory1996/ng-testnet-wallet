@@ -14,9 +14,18 @@
 
       <mat-form-field appearance="standard">
         <mat-label>送金額</mat-label>
-        <input matInput formControlName="amount" type="number" placeholder="amount" required autofocus>
+        <input matInput [(ngModel)]="convertJPY" formControlName="amount" type="number" placeholder="amount" required autofocus>
         <mat-error *ngIf="amount.invalid">{{ amountErrorMessage() }}</mat-error>
       </mat-form-field>
+
+
+      <div style="text-align: left;color: rgb(176, 176, 176);">
+        <mat-icon style="font-size:20px;float: left;">sync_alt</mat-icon>
+        <p style="float: left;">
+          ￥ {{((data.btcPrice * 1e-8) * convertJPY).toFixed(2)}}
+          <span style="margin-left: 30px;">残高: {{data.balance}} satoshi</span>
+        </p>
+      </div>
 
 
       <mat-form-field appearance="standard">
@@ -24,6 +33,7 @@
         <input matInput formControlName="fee" type="number" placeholder="fee" required autofocus>
         <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
       </mat-form-field>
+
 
       <button mat-flat-button color="primary" [disabled]="sendingForm.invalid" type="submit">送金</button>
   </form>

@@ -45,7 +45,8 @@ export class WalletComponent implements OnInit {
 
   sendDialog(): void {
     this.dialog.open(SendDialogComponent, {
-      height: '400px',
+      data: {balance: this.balance, btcPrice: this.btcPrice},
+      height: '405px',
       width: '600px',
       disableClose: true
     });
@@ -75,12 +76,12 @@ export class WalletComponent implements OnInit {
   getAddressDetail() {
     this.walletService.getAddressDetail().subscribe(
       (data) => {
-        this.balance = data.balance * 1e-8;
+        this.balance = data.balance;
         this.address = data.address;
         this.unconfirmed = data.filterUnTxs;
         this.transactions = data.filterTxs;
-        this.totalSent = data.totalSent * 1e-8;
-        this.totalReceived = data.totalReceived * 1e-8;
+        this.totalSent = data.totalSent;
+        this.totalReceived = data.totalReceived;
         this.btcPrice = data.currentJPY;
       },
       (err) => {
