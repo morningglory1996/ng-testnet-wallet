@@ -23,11 +23,11 @@
       </a>
     </mat-nav-list>
     <mat-nav-list *ngIf="!authService.isAuthenticated()">
-      <a id="login" mat-list-item [routerLink]="['/login']" (click)="closeSideNav();">
+      <a id="login" mat-list-item [routerLink]="['/login']" routerLinkActive="active-list-item" (click)="closeSideNav();">
         <mat-icon aria-label="login">login</mat-icon>
         ログイン
       </a>
-      <a mat-list-item [routerLink]="['/register']" (click)="closeSideNav()">
+      <a mat-list-item [routerLink]="['/register']" routerLinkActive="active-list-item" (click)="closeSideNav()">
         <mat-icon>how_to_reg</mat-icon>
         登録する
       </a>
