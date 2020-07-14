@@ -11,8 +11,10 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { QRCodeModule } from 'angularx-qrcode';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AddressDialogComponent } from './address-dialog/address-dialog.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     SendDialogComponent,
     TxDialogComponent,
     UncTxDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AddressDialogComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    QRCodeModule
   ]
 })
 export class DialogModule { }

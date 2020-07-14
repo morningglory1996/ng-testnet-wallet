@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { WalletService } from './wallet.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { SendDialogComponent } from '../dialog/send/send-dialog.component'
 import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.component';
 import { TxDialogComponent } from '../dialog/tx-dialog/tx-dialog.component';
+import { AddressDialogComponent } from '../dialog/address-dialog/address-dialog.component';
 
 @Component({
   selector: 'app-wallet',
@@ -69,6 +70,15 @@ export class WalletComponent implements OnInit {
       height: '500px',
       disableClose: true
     });
+  }
+
+  addressDialog() {
+    this.dialog.open(AddressDialogComponent, {
+      data: this.address,
+      height: '400px',
+      width: '500px',
+      disableClose: true
+    })
   }
 
   getUserName() {

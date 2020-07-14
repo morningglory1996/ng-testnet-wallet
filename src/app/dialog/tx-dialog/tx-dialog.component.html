@@ -2,7 +2,7 @@
   <button mat-button (click)="close()" style="float: right;">
     <mat-icon>close</mat-icon>
   </button>
-  <h1 mat-dialog-title>トランザクション</h1>
+  <h2 mat-dialog-title>トランザクション</h2>
   <table [style.table-layout]="(isHandset$ | async) ? 'fixed' : 'auto'" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
