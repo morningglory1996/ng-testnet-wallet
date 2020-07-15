@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TopComponent } from './top/top.component';
-import { WalletComponent } from './wallet/wallet.component';
 import { AuthModule } from './auth/auth.module';
+import { WalletModule } from './wallet/wallet.module';
+
+import { TopComponent } from './top/top.component';
+
 
 const routes: Routes = [
-  { path: '', component: TopComponent},
-  { path: 'wallet/:userId', component: WalletComponent}
-
+  { path: '', component: TopComponent}
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    AuthModule
+    AuthModule,
+    WalletModule
   ],
   exports: [RouterModule]
 })
