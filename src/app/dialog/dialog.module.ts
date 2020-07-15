@@ -15,6 +15,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AddressDialogComponent } from './address-dialog/address-dialog.component';
+import { ReceiveDialogComponent } from './receive-dialog/receive-dialog.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AddressDialogComponent } from './address-dialog/address-dialog.componen
     TxDialogComponent,
     UncTxDialogComponent,
     ConfirmDialogComponent,
-    AddressDialogComponent
+    AddressDialogComponent,
+    ReceiveDialogComponent
   ],
   imports: [
     CommonModule,

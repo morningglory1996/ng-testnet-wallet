@@ -1,0 +1,15 @@
+<button mat-button (click)="close()" style="float: right;">
+  <mat-icon>close</mat-icon>
+</button>
+<h2 mat-dialog-title>ビットコインを受け取る</h2>
+<h3 style="margin-bottom: 0;word-wrap: break-word;text-align: center;">{{qrdata}}</h3>
+<div mat-dialog-content style="text-align: center;">
+  <qrcode [qrdata]="qrdata" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  <mat-form-field style="width: 50%;">
+    <mat-label>金額を指定する(satoshi)</mat-label>
+    <input #input matInput type="number" placeholder="金額を指定する" (input)="designation($event.target.value)">
+  </mat-form-field>
+  <button mat-mini-fab (click)="qrdata = data;input.value=''" color="primary" style="margin-left: 20px;">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
