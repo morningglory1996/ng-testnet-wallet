@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { WalletService } from './wallet.service';
 import { WalletComponent } from './wallet.component';
@@ -16,7 +16,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const routes: Routes = [
-  { path: 'wallet/:userId', component: WalletComponent, canActivate: [AuthGuard]}
+  { path: 'wallet/:userId', component: WalletComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -24,6 +24,7 @@ const routes: Routes = [
     WalletComponent
   ],
   imports: [
+    [RouterModule.forChild(routes)],
     CommonModule,
     FormsModule,
     MatButtonModule,
