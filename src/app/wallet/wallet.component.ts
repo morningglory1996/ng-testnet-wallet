@@ -10,6 +10,19 @@ import { SendDialogComponent } from '../dialog/send/send-dialog.component'
 import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.component';
 import { TxDialogComponent } from '../dialog/tx-dialog/tx-dialog.component';
 import { AddressDialogComponent } from '../dialog/address-dialog/address-dialog.component';
+import { ReceiveDialogComponent } from '../dialog/receive-dialog/receive-dialog.component';
+
+interface Transaction {
+  timeStamp: string,
+  txId: string,
+  blockHeight: number,
+  confirmations: number | string
+}
+
+interface UncTransaction {
+  timeStamp: string,
+  txId: string
+}
 
 @Component({
   selector: 'app-wallet',
@@ -20,8 +33,8 @@ export class WalletComponent implements OnInit {
   userName: string;
   balance: number;
   address: string;
-  unconfirmed: [] = [];
-  transactions: [] = [];
+  unconfirmed: UncTransaction[] = [];
+  transactions: Transaction[] = [];
   totalSent: number;
   totalReceived: number;
   btcPrice: number;
@@ -50,9 +63,18 @@ export class WalletComponent implements OnInit {
     this.dialog.open(SendDialogComponent, {
       data: {balance: this.balance, btcPrice: this.btcPrice},
       height: '405px',
-      width: '600px',
+      width: '500px',
       disableClose: true
     });
+  }
+
+  receiveDialog(): void {
+    this.dialog.open(ReceiveDialogComponent, {
+      data: this.address,
+      height: '450px',
+      width: '500px',
+      disableClose: true
+    })
   }
 
   

@@ -1,6 +1,8 @@
 <div *ngIf="wallet" class="grid-container">
-  <h1 class="mat-h1" style="float: left;">{{ userName }}さんのウォレット</h1>
-  <mat-icon (click)="getAddressDetail()" style="font-size: 30px;cursor: pointer;">cached</mat-icon>
+  <h1 style="float: left;padding: 5px;">{{ userName }}さんのウォレット</h1>
+  <button mat-mini-fab (click)="getAddressDetail()" color="primary" style="margin-left: 10px;">
+    <mat-icon>cached</mat-icon>
+  </button>
 
   <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -57,7 +59,7 @@
             <mat-icon>send</mat-icon>
             Send
           </button>
-          <button mat-button>
+          <button mat-button (click)="receiveDialog()">
             <mat-icon>arrow_circle_down</mat-icon>
             Receive
           </button>
