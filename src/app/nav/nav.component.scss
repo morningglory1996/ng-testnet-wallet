@@ -29,7 +29,7 @@
   }
 }
 
-.mat-toolbar.mat-toolbar.ng-tns-c163-0.mat-toolbar-single-row {
+.mat-toolbar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -38,7 +38,13 @@
 }
 
 .active-list-item {
-  background-color: rgb(219, 219, 219) !important;
+  background-color: rgb(238, 238, 238);
+  color: rgb(0, 150, 136);
+  font-weight: bold;
+}
+
+.mat-toolbar {
+  background: rgb(18, 29, 51);
 }
 
 
