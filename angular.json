@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "ng-testnet-wallet"
+  "defaultProject": "ng-testnet-wallet",
+  "cli": {
+    "analytics": false
+  }
 }

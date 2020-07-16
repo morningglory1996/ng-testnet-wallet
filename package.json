@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@auth0/angular-jwt": "^4.2.0",
+    "@zxing/ngx-scanner": "^3.0.0",
     "angularx-qrcode": "^10.0.4",
     "bcrypt": "^5.0.0",
     "bitcoinjs-lib": "^5.0.5",

@@ -7,7 +7,10 @@
   
         <p style="margin-top: 20px;">
           <mat-form-field appearance="standard">
-            <mat-label>Eメールアドレス</mat-label>
+            <mat-label>
+              <mat-icon>email</mat-icon>
+              Eメールアドレス
+            </mat-label>
             <input matInput formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
             <label for="inputEmail"></label>
             <mat-error *ngIf="email.invalid">{{emailErrorMessage()}}</mat-error>
@@ -16,7 +19,10 @@
   
         <p>
           <mat-form-field appearance="standard">
-            <mat-label>パスワード</mat-label>
+            <mat-label>
+              <mat-icon>vpn_key</mat-icon>
+              パスワード
+            </mat-label>
             <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" id="inputPassword" class="form-control" placeholder="passwrod" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
