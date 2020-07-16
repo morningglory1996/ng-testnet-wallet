@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { WalletService } from './wallet.service';
-import { WalletComponent } from './wallet.component';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from "@angular/material/dialog";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { WalletService } from './wallet.service';
+import { WalletComponent } from './wallet.component';
 
 const routes: Routes = [
   { path: 'wallet/:userId', component: WalletComponent, canActivate: [AuthGuard] }
@@ -35,7 +39,10 @@ const routes: Routes = [
     MatMenuModule,
     MatBadgeModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ClipboardModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [
     WalletService

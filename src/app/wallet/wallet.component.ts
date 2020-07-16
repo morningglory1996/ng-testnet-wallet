@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { WalletService } from './wallet.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SendDialogComponent } from '../dialog/send/send-dialog.component'
 import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.component';
@@ -51,7 +52,8 @@ export class WalletComponent implements OnInit {
     private walletService: WalletService,
     private router: ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar
     ) {}
 
   ngOnInit(): void {
@@ -62,14 +64,16 @@ export class WalletComponent implements OnInit {
   sendDialog(): void {
     this.dialog.open(SendDialogComponent, {
       data: {balance: this.balance, btcPrice: this.btcPrice},
-      disableClose: true
+      disableClose: true,
+      maxWidth: '90vw !important'
     });
   }
 
   receiveDialog(): void {
     this.dialog.open(ReceiveDialogComponent, {
       data: this.address,
-      disableClose: true
+      disableClose: true,
+      maxWidth: '90vw !important'
     })
   }
 
@@ -77,23 +81,26 @@ export class WalletComponent implements OnInit {
   uncTxDialog(): void {
     this.dialog.open(UncTxDialogComponent, {
       data: this.unconfirmed,
-      height: '500px',
-      disableClose: true
+      disableClose: true,
+      maxWidth: '90vw !important',
+      maxHeight: '500px'
     });
   }
 
   txDialog() {
     this.dialog.open(TxDialogComponent, {
       data: this.transactions,
-      height: '500px',
-      disableClose: true
+      disableClose: true,
+      maxWidth: '90vw !important',
+      maxHeight: '500px'
     });
   }
 
   addressDialog() {
     this.dialog.open(AddressDialogComponent, {
       data: this.address,
-      disableClose: true
+      disableClose: true,
+      maxWidth: '90vw !important'
     })
   }
 
@@ -120,6 +127,12 @@ export class WalletComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Copied!', '', {
+      duration: 2000
+    });
   }
 
 }

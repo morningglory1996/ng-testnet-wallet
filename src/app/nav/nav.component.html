@@ -5,6 +5,7 @@
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
+
 <mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
   <mat-sidenav #drawer class="sidenav"
       [fixedTopGap]="(isHandset$ | async) ? 0 : 64"
@@ -12,8 +13,9 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
+    
     <mat-nav-list *ngIf="authService.isAuthenticated()">
-      <a mat-list-item (click)="toWalletPage();closeSideNav()">
+      <a mat-list-item [routerLink]="['/wallet']" (click)="toWalletPage();closeSideNav()" routerLinkActive="active-list-item">
         <mat-icon>account_balance_wallet</mat-icon>
         ウォレット
       </a>
@@ -22,6 +24,7 @@
         ログアウト
       </a>
     </mat-nav-list>
+    
     <mat-nav-list *ngIf="!authService.isAuthenticated()">
       <a id="login" mat-list-item [routerLink]="['/login']" routerLinkActive="active-list-item" (click)="closeSideNav();">
         <mat-icon aria-label="login">login</mat-icon>
@@ -33,6 +36,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary" *ngIf="(isHandset$ | async)">
       <button
@@ -47,4 +51,5 @@
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+
 </mat-sidenav-container>
