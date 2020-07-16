@@ -1,5 +1,14 @@
 <mat-toolbar color="primary" *ngIf="!(isHandset$ | async)">
-  <span [routerLink]="['/']">Testnet Wallet</span>
+  <a [routerLink]="['/']" class="brand">
+    <span>
+      <img class="brand-img" src="../../assets/img/logo.png" alt="logo">
+      <span>testnet
+        <span style="font-weight: bold;">
+          wallet
+        </span>
+      </span>
+    </span>
+  </a>
   <span class="example-spacer"></span>
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
@@ -47,7 +56,16 @@
         >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Testnet Wallet</span>
+      <a [routerLink]="['/']" class="brand">
+        <span>
+          <img class="brand-img" src="../../assets/img/logo.png" alt="logo">
+          <span>testnet
+            <span style="font-weight: bold;">
+              wallet
+            </span>
+          </span>
+        </span>
+      </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
