@@ -62,8 +62,6 @@ export class WalletComponent implements OnInit {
   sendDialog(): void {
     this.dialog.open(SendDialogComponent, {
       data: {balance: this.balance, btcPrice: this.btcPrice},
-      height: '405px',
-      width: '500px',
       disableClose: true
     });
   }
@@ -71,8 +69,6 @@ export class WalletComponent implements OnInit {
   receiveDialog(): void {
     this.dialog.open(ReceiveDialogComponent, {
       data: this.address,
-      height: '450px',
-      width: '500px',
       disableClose: true
     })
   }
@@ -97,8 +93,6 @@ export class WalletComponent implements OnInit {
   addressDialog() {
     this.dialog.open(AddressDialogComponent, {
       data: this.address,
-      height: '400px',
-      width: '500px',
       disableClose: true
     })
   }

@@ -1,0 +1,9 @@
+<div style="text-align: center;">
+  <button mat-mini-fab color="primary" type="button" (click)="close()" style="margin-bottom: 20px;">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <zxing-scanner
+    [enable]="scannerEnabled"
+    (scanSuccess)="scanSuccessHandler($event)"
+  ></zxing-scanner>
+</div>
