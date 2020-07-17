@@ -19,7 +19,6 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
     
     <mat-nav-list *ngIf="authService.isAuthenticated()">
       <a mat-list-item [routerLink]="['/wallet']" (click)="toWalletPage();closeSideNav()" routerLinkActive="active-list-item">
