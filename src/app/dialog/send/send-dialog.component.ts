@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,9 +17,8 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   recipient = new FormControl('', [Validators.required]);
   fee = new FormControl('', [Validators.required]);
   convertJPY: number = 0;
-  inputValue: string;
-
-  @ViewChild('inputElm') private inputElm: ElementRef;
+  inputAddress: string;
+  inputAmount: number = 0;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -72,7 +71,18 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   openScanDialog() {
     const dialogRef = this.dialog.open(ScanDialogComponent, {});
     this._dialogService.scanSuccess.subscribe((data) => {
-      this.inputValue = data;
+
+      if(data.indexOf('bitcoin') != -1) {
+        const splitData = data.split('?')[0];
+        const splitAmountBTC = data.split('=')[1];
+        const splitAddress = splitData.split(':')[1];
+        const amountSatoshi = Number(splitAmountBTC) * 1e8;
+        this.inputAddress = splitAddress;
+        this.inputAmount = amountSatoshi;
+      } else {
+        this.inputAddress = data;
+      }
+
       dialogRef.close();
     });
   }
