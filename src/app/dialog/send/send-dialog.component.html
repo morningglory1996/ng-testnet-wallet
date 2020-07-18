@@ -13,7 +13,7 @@
         placeholder="recipient"
         autofocus
         #inputElm
-        [(ngModel)]="inputValue"
+        [(ngModel)]="inputAddress"
       />
       <button mat-icon-button matSuffix type="button" (click)="openScanDialog()">
         <mat-icon>qr_code_scanner</mat-icon>
@@ -25,7 +25,7 @@
       <mat-label>送金額</mat-label>
       <input
         matInput
-        [(ngModel)]="convertJPY"
+        [(ngModel)]="inputAmount"
         formControlName="amount"
         type="number"
         placeholder="amount"
@@ -38,7 +38,7 @@
     <div style="text-align: left; color: rgb(176, 176, 176);">
       <mat-icon style="font-size: 20px; float: left;">waves</mat-icon>
       <p style="float: left;">
-        ￥{{ (data.btcPrice * 1e-8 * convertJPY).toFixed(2) }}
+        ￥{{ (data.btcPrice * 1e-8 * inputAmount).toFixed(2) }}
         <span style="margin-left: 30px;">残高: {{ data.balance }} satoshi</span>
       </p>
     </div>
