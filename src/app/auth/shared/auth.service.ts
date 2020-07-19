@@ -58,6 +58,6 @@ export class AuthService {
     localStorage.removeItem('app-auth');
     localStorage.removeItem('app-meta');
     this.decodedToken = new DecodedToken();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

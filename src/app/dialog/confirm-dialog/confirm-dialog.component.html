@@ -29,7 +29,7 @@
 </div>
 
 <div *ngIf="sendingMsg">
-  <p style="text-align: center;">
+  <p style="text-align: center;color: green;">
     <mat-icon>check_circle_outline</mat-icon>
   </p>
   <h2 mat-dialog-title style="text-align: center;">送金完了</h2>
@@ -40,7 +40,7 @@
 </div>
 
 <div *ngIf="errorMsg">
-  <p style="text-align:center;">
+  <p style="text-align:center;color: red;">
     <mat-icon>error_outline</mat-icon>
   </p>
   <h2 mat-dialog-title style="text-align: center;">エラー</h2>
