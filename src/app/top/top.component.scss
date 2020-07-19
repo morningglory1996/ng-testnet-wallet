@@ -1,0 +1,66 @@
+.row {
+    display : flex;
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+
+@media screen and (min-width:320px) and (max-width:599px) {
+    .first-col {
+        order: 4;
+
+        .text-container {
+            padding: 0rem 1rem;
+            text-align: center;
+
+            h1 {
+                font-size: 42px;
+                margin-bottom: 20px;
+                line-height: 56px;
+            }
+        }
+    }
+
+    .second-col {
+        order: 3;
+
+        .img-container {
+            margin-bottom: 0rem;
+            text-align: center;
+
+            img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    }
+
+}
+
+
+@media screen and (min-width:960px) {
+
+    .first-col {
+        .text-container {
+            padding: 8rem 4rem;
+            text-align: left;
+    
+            h1 {
+                font-size: 56px;
+                margin-bottom: 20px;
+                line-height: 56px;
+            }
+        }
+    }
+
+    .second-col {
+        .img-container {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+    }
+
+}
+
+
