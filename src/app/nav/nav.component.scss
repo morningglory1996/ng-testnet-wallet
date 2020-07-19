@@ -1,6 +1,7 @@
 .brand {
   color: white;
   text-decoration: none;
+
 }
 
 .brand-img {
@@ -10,39 +11,46 @@
   margin-bottom: 3px;
 }
 
-.sidenav-container {
-  color: rgb(68, 68, 68);
-  height: 100%;
-}
+.pc-toolbar {
+  background: rgb(11, 28, 61);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-.sidenav {
-  width: 270px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.233);
-}
-
-
-.example-spacer {
-  flex: 1 1 auto;
-}
-
-.mat-nav-list {
-  .mat-icon{
-    margin-right: 20px;
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  button {
+    color: white;
   }
 }
 
-.mat-toolbar {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.sidenav-container {
+  color: rgb(68, 68, 68);
+  height: 100%;
+
+  .mat-sidenav {
+    width: 270px;
+  
+    .mat-toolbar {
+      background: white;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .mat-nav-list {
+      .mat-icon{
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .mat-sidenav-content {
+    .mat-toolbar {
+    background: rgb(11, 28, 61);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    button {
+      color: white;
+    }
+    }
+  }
 }
 
 .mat-drawer-side {
@@ -54,11 +62,6 @@
   color: rgb(25, 118, 210);
   font-weight: bold;
 }
-
-.mat-toolbar {
-  background: rgb(11, 28, 61);
-}
-
 
 
 

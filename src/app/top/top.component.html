@@ -1,14 +1,19 @@
 <div class="container">
     <div class="row">
-
       <div class="col-md first-col">
         <div class="jumbotron text-container">
             <h1 class="mat-h1">Testnet Wallet</h1>
             <p class="lead">Simple Wallet for Bitcoin Testnet</p>
             <hr class="my-4">
-            <p>By Using Bitcoin, You can transfer money without relying on a third party.</p>
-            <button mat-raised-button routerLink="/register" color="primary">Register</button>
-            <button mat-raised-button routerLink="/login" style="margin-left: 30px;padding: 0 25px;">Login</button>
+            <p>By using Bitcoin, You can transfer money without relying on a third party.</p>
+            <span *ngIf="!authService.isAuthenticated()">
+              <button class="register" mat-raised-button routerLink="/register" color="primary">新規登録</button>
+              <button class="login" mat-raised-button routerLink="/login">ログイン</button>
+            </span>
+            <span *ngIf="authService.isAuthenticated()">
+              <button mat-raised-button color="primary" [routerLink]="['/wallet', userId]">あなたのウォレット</button>
+            </span>
+
         </div>
       </div>
 
@@ -17,7 +22,6 @@
             <img class="img-fluid" src="../../assets/img/top-image.svg" alt="top-image">
         </div>
       </div>
-
     </div>
 </div>
 

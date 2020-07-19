@@ -53,7 +53,6 @@ export class ConfirmDialogComponent implements OnInit {
       (result) => {
         this.sendingMsgShow();
         this.txId = result.tx.hash;
-        console.log(result);
       },
       (err) => {
         this.errorMsgShow();
