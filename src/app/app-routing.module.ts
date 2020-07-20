@@ -5,17 +5,10 @@ import { WalletModule } from './wallet/wallet.module';
 
 import { TopComponent } from './top/top.component';
 
-
-const routes: Routes = [
-  { path: '', component: TopComponent}
-];
+const routes: Routes = [{ path: '', component: TopComponent }];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    AuthModule,
-    WalletModule
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), AuthModule, WalletModule],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

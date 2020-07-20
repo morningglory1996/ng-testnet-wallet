@@ -1,25 +1,35 @@
 <div *ngIf="confirmMsg">
-  <p style="text-align: center;margin-bottom: 0;">
-    <mat-icon>error_outline</mat-icon>
+  <p style="text-align: center; margin-bottom: 0;">
+    <mat-icon style="color: cornflowerblue;">error_outline</mat-icon>
   </p>
-  <h2 mat-dialog-title style="text-align: center;">以下の内容で宜しいですか？</h2>
-  <hr>
+  <h2 mat-dialog-title style="text-align: center;">
+    以下の内容で宜しいですか？
+  </h2>
+  <hr />
   <div mat-dialog-content>
-    <p>宛先: 
-      <strong style="word-wrap: break-word;">{{data.recipient}}</strong>
+    <p>
+      宛先:
+      <strong style="word-wrap: break-word;">{{ data.recipient }}</strong>
     </p>
-    <p>金額: 
-      <strong>{{data.amount}} satoshi</strong>
+    <p>
+      金額:
+      <strong>{{ data.amount }} satoshi</strong>
     </p>
-    <p>手数料: 
-      <strong>
-        {{data.fee}} satoshi
-      </strong>
+    <p>
+      手数料:
+      <strong> {{ data.fee }} satoshi </strong>
     </p>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="close()">キャンセル</button>
-    <button mat-raised-button color="primary" (click)="sendTx(); spinnerShow()" cdkFocusInitial>OK</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="sendTx(); spinnerShow()"
+      cdkFocusInitial
+    >
+      OK
+    </button>
   </div>
 </div>
 
@@ -29,23 +39,44 @@
 </div>
 
 <div *ngIf="sendingMsg">
-  <p style="text-align: center;color: green;">
+  <p style="text-align: center; color: mediumseagreen;">
     <mat-icon>check_circle_outline</mat-icon>
   </p>
   <h2 mat-dialog-title style="text-align: center;">送金完了</h2>
-  <span>TXID:
-    <a [href]="['https://tbtc.bitaps.com/' + txId]" target=”_blank” rel=”noopener”> {{txId}}</a>
+  <span
+    >TXID:
+    <a
+      [href]="['https://tbtc.bitaps.com/' + txId]"
+      target="”_blank”"
+      rel="”noopener”"
+    >
+      {{ txId }}</a
+    >
   </span>
-  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;margin-top: 30px;">OK</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="close()"
+    style="float: right; margin-top: 30px;"
+  >
+    OK
+  </button>
 </div>
 
 <div *ngIf="errorMsg">
-  <p style="text-align:center;color: red;">
+  <p style="text-align: center; color: palevioletred;">
     <mat-icon>error_outline</mat-icon>
   </p>
   <h2 mat-dialog-title style="text-align: center;">エラー</h2>
   <p>送金に失敗しました。入力内容を確認してください。</p>
-  <button mat-raised-button color="primary" cdkFocusInitial (click)="close()" style="float: right;">OK</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="close()"
+    style="float: right;"
+  >
+    OK
+  </button>
 </div>
-
-

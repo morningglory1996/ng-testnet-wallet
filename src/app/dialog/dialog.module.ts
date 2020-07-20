@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SendDialogComponent } from './send/send-dialog.component';
+import { SendDialogComponent } from './send-dialog/send-dialog.component';
 import { TxDialogComponent } from './tx-dialog/tx-dialog.component';
 import { UncTxDialogComponent } from './unc-tx-dialog/unc-tx-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

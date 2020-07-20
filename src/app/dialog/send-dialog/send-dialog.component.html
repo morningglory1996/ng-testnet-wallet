@@ -15,10 +15,17 @@
         #inputElm
         [(ngModel)]="inputAddress"
       />
-      <button mat-icon-button matSuffix type="button" (click)="openScanDialog()">
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="openScanDialog()"
+      >
         <mat-icon>qr_code_scanner</mat-icon>
       </button>
-      <mat-error *ngIf="recipient.invalid">{{recipientErrorMessage()}}</mat-error>
+      <mat-error *ngIf="recipient.invalid">{{
+        recipientErrorMessage()
+      }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard">

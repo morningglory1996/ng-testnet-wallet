@@ -2,33 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  userName = new FormControl('', [Validators.required, Validators.maxLength(15)]);
+  userName = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(15),
+  ]);
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('',[Validators.required, Validators.minLength(6)]);
-  confirmPassword = new FormControl('',[Validators.required]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+  confirmPassword = new FormControl('', [Validators.required]);
   hide = true;
   errors = [];
 
-  constructor(
-    private authService: AuthService,
-    private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       userName: this.userName,
       email: this.email,
       password: this.password,
-      confirmPassword: this.confirmPassword
-    })
+      confirmPassword: this.confirmPassword,
+    });
   }
 
   userNameErrorMessage() {
@@ -36,7 +40,9 @@ export class RegisterComponent implements OnInit {
       return 'ユーザー名を入力してください';
     }
 
-    return this.userName.hasError('maxlength') ? 'ユーザー名は15文字までです' : '';
+    return this.userName.hasError('maxlength')
+      ? 'ユーザー名は15文字までです'
+      : '';
   }
 
   emailErrorMessage() {
@@ -52,25 +58,25 @@ export class RegisterComponent implements OnInit {
       return 'パスワードを入力してください';
     }
 
-    return this.password.hasError('minlength') ? 'パスワードは6文字以上で入力してください' : '';
+    return this.password.hasError('minlength')
+      ? 'パスワードは6文字以上で入力してください'
+      : '';
   }
 
   confirmErrorMessage() {
-    return this.confirmPassword.hasError('required') ? '確認用パスワードを入力してください' : '';
+    return this.confirmPassword.hasError('required')
+      ? '確認用パスワードを入力してください'
+      : '';
   }
-
-
 
   register(registerForm) {
     this.authService.register(registerForm.value).subscribe(
       (result) => {
-        console.log(result);
         this.router.navigate(['/login']);
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error.errors;
-        console.log(err);
       }
-    )
+    );
   }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { WalletService } from '../../wallet/wallet.service'
+import { WalletService } from '../../wallet/wallet.service';
 
 @Component({
   selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss']
+  styleUrls: ['./confirm-dialog.component.scss'],
 })
 export class ConfirmDialogComponent implements OnInit {
   confirmMsg: boolean = true;
@@ -15,13 +15,12 @@ export class ConfirmDialogComponent implements OnInit {
   txId: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data : any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    private walletService: WalletService,
-  ) { }
+    private walletService: WalletService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   close(): void {
     this.dialogRef.close();
@@ -58,7 +57,6 @@ export class ConfirmDialogComponent implements OnInit {
         this.errorMsgShow();
         console.log(err);
       }
-    )
+    );
   }
-
 }

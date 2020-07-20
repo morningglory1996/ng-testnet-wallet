@@ -1,7 +1,12 @@
-<mat-toolbar class="pc-toolbar" *ngIf="!(isHandset$ | async)" [ngStyle]="toolbarStyle">
+<mat-toolbar
+  class="pc-toolbar"
+  *ngIf="!(isHandset$ | async)"
+  [ngStyle]="toolbarStyle"
+>
   <a [routerLink]="['/']" class="brand" [ngStyle]="brandStyle">
-    <img class="brand-img" src="../../assets/img/logo.png" alt="logo">
-    <span>testnet
+    <img class="brand-img" src="../../assets/img/logo.png" alt="logo" />
+    <span
+      >testnet
       <span style="font-weight: bold;">
         wallet
       </span>
@@ -13,41 +18,68 @@
   </button>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
-  <mat-sidenav #drawer class="sidenav"
-      [fixedTopGap]="(isHandset$ | async) ? 0 : 64"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-
-      <mat-toolbar *ngIf="(isHandset$ | async)">
-        <a [routerLink]="['/']" class="brand" style="color:rgb(18, 29, 51);" (click)="closeSideNav()">
-          <img class="brand-img" src="../../assets/img/logo.png" alt="logo">
-          <span>testnet
-            <span style="font-weight: bold;">
-              wallet
-            </span>
+<mat-sidenav-container
+  class="sidenav-container"
+  [hasBackdrop]="(isHandset$ | async) ? true : false"
+>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [fixedTopGap]="(isHandset$ | async) ? 0 : 64"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar *ngIf="isHandset$ | async">
+      <a
+        [routerLink]="['/']"
+        class="brand"
+        style="color: rgb(18, 29, 51);"
+        (click)="closeSideNav()"
+      >
+        <img class="brand-img" src="../../assets/img/logo.png" alt="logo" />
+        <span
+          >testnet
+          <span style="font-weight: bold;">
+            wallet
           </span>
-        </a>
-      </mat-toolbar>
+        </span>
+      </a>
+    </mat-toolbar>
 
     <mat-nav-list *ngIf="authService.isAuthenticated()">
-      <a mat-list-item [routerLink]="['/wallet']" (click)="toWalletPage();closeSideNav()" [routerLinkActive]="['active-list-item']">
+      <a
+        mat-list-item
+        [routerLink]="['/wallet']"
+        (click)="toWalletPage(); closeSideNav()"
+        [routerLinkActive]="['active-list-item']"
+      >
         <mat-icon>account_balance_wallet</mat-icon>
         ウォレット
       </a>
-      <a mat-list-item (click)="logout();closeSideNav()">
+      <a mat-list-item (click)="logout(); closeSideNav()">
         <mat-icon>logout</mat-icon>
         ログアウト
       </a>
     </mat-nav-list>
-    
+
     <mat-nav-list *ngIf="!authService.isAuthenticated()">
-      <a id="login" mat-list-item [routerLink]="['/login']" [routerLinkActive]="['active-list-item']" (click)="closeSideNav();">
+      <a
+        id="login"
+        mat-list-item
+        [routerLink]="['/login']"
+        [routerLinkActive]="['active-list-item']"
+        (click)="closeSideNav()"
+      >
         <mat-icon aria-label="login">login</mat-icon>
         ログイン
       </a>
-      <a mat-list-item [routerLink]="['/register']" [routerLinkActive]="['active-list-item']" (click)="closeSideNav();">
+      <a
+        mat-list-item
+        [routerLink]="['/register']"
+        [routerLinkActive]="['active-list-item']"
+        (click)="closeSideNav()"
+      >
         <mat-icon>how_to_reg</mat-icon>
         登録する
       </a>
@@ -55,17 +87,22 @@
   </mat-sidenav>
 
   <mat-sidenav-content [ngStyle]="contentStyle">
-    <mat-toolbar *ngIf="(isHandset$ | async)" [ngStyle]="toolbarStyle">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" [ngStyle]="toggleStyle">
+    <mat-toolbar *ngIf="isHandset$ | async" [ngStyle]="toolbarStyle">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        [ngStyle]="toggleStyle"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a [routerLink]="['/']" [ngStyle]="brandStyle" class="brand">
         <span>
-          <img class="brand-img" src="../../assets/img/logo.png" alt="logo">
+          <img class="brand-img" src="../../assets/img/logo.png" alt="logo" />
         </span>
       </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

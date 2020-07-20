@@ -4,15 +4,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-receive-dialog',
   templateUrl: './receive-dialog.component.html',
-  styleUrls: ['./receive-dialog.component.scss']
+  styleUrls: ['./receive-dialog.component.scss'],
 })
 export class ReceiveDialogComponent implements OnInit {
   qrdata: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data : any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ReceiveDialogComponent>
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.qrdata = this.data;
@@ -26,5 +26,4 @@ export class ReceiveDialogComponent implements OnInit {
     this.qrdata = '';
     this.qrdata = 'bitcoin:' + this.data + '?amount=' + (n * 1e-8).toFixed(8);
   }
-
 }
