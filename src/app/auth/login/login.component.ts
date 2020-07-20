@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -16,26 +16,26 @@ export class LoginComponent implements OnInit {
   hide = true;
   errors = [];
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup ({
+    this.loginForm = new FormGroup({
       email: this.email,
-      password: this.password
-    })
+      password: this.password,
+    });
   }
 
   emailErrorMessage() {
-    return this.email.hasError('required') ? 'メールアドレスを入力してください' : '';
+    return this.email.hasError('required')
+      ? 'メールアドレスを入力してください'
+      : '';
   }
 
   passwordErrorMessage() {
-    return this.password.hasError('required') ? 'パスワードを入力してください' : '';
+    return this.password.hasError('required')
+      ? 'パスワードを入力してください'
+      : '';
   }
-
 
   login(loginForm) {
     this.authService.login(loginForm.value).subscribe(
@@ -44,8 +44,7 @@ export class LoginComponent implements OnInit {
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error.errors;
-        console.log(err);
       }
-    )
+    );
   }
 }

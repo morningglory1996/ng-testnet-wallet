@@ -2,18 +2,28 @@
   <mat-card style="text-align: center;">
     <mat-card-title>アカウント登録</mat-card-title>
     <mat-card-content>
-      <mat-icon mat-card-image style="font-size: 50px;margin-top: 30px;">account_circle</mat-icon>
+      <mat-icon mat-card-image style="font-size: 50px; margin-top: 30px;"
+        >account_circle</mat-icon
+      >
       <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
-  
         <p style="margin-top: 20px;">
           <mat-form-field appearance="standard">
             <mat-label>
               <mat-icon>person</mat-icon>
               ユーザー名(15文字まで)
             </mat-label>
-            <input matInput formControlName="userName" type="text" placeholder="username" required autofocus>
+            <input
+              matInput
+              formControlName="userName"
+              type="text"
+              placeholder="username"
+              required
+              autofocus
+            />
             <label for="inputEmail"></label>
-            <mat-error *ngIf="userName.invalid">{{userNameErrorMessage()}}</mat-error>
+            <mat-error *ngIf="userName.invalid">{{
+              userNameErrorMessage()
+            }}</mat-error>
           </mat-form-field>
         </p>
 
@@ -23,9 +33,18 @@
               <mat-icon>email</mat-icon>
               メールアドレス
             </mat-label>
-            <input matInput formControlName="email" type="email" placeholder="email" required autofocus>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              placeholder="email"
+              required
+              autofocus
+            />
             <label for="inputEmail"></label>
-            <mat-error *ngIf="email.invalid">{{emailErrorMessage()}}</mat-error>
+            <mat-error *ngIf="email.invalid">{{
+              emailErrorMessage()
+            }}</mat-error>
           </mat-form-field>
         </p>
 
@@ -35,90 +54,69 @@
               <mat-icon>vpn_key</mat-icon>
               パスワード(6文字以上)
             </mat-label>
-            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="passwrod" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input
+              matInput
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+              placeholder="passwrod"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
-            <mat-error *ngIf="password.invalid">{{passwordErrorMessage()}}</mat-error>
+            <mat-error *ngIf="password.invalid">{{
+              passwordErrorMessage()
+            }}</mat-error>
           </mat-form-field>
         </p>
-  
+
         <p>
           <mat-form-field appearance="standard">
             <mat-label>確認用パスワード</mat-label>
-            <input matInput formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" placeholder="confirm passwrod" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input
+              matInput
+              formControlName="confirmPassword"
+              [type]="hide ? 'password' : 'text'"
+              placeholder="confirm passwrod"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
-            <mat-error *ngIf="confirmPassword.invalid">{{confirmErrorMessage()}}</mat-error>
+            <mat-error *ngIf="confirmPassword.invalid">{{
+              confirmErrorMessage()
+            }}</mat-error>
           </mat-form-field>
         </p>
-        
+
         <div>
           <mat-error *ngFor="let error of errors">
             {{ error.detail }}
           </mat-error>
         </div>
 
-        <button  mat-flat-button color="primary" [disabled]="registerForm.invalid" style="width: 70%;margin-top: 30px;" type="submit">登録</button>
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="registerForm.invalid"
+          style="width: 70%; margin-top: 30px;"
+          type="submit"
+        >
+          登録
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-
-
-
-
-
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center">新規会員登録</h5>
-
-          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="form-signin">
-
-            <div class="form-label-group">
-              <input ngModel name="userName" type="text" id="inputEmail"placeholder="Username" required autofocus>
-              <label for="inputEmail"></label>
-            </div>
-
-            <div class="form-label-group">
-              <input ngModel
-                name="email"
-                type="email"
-                id="inputEmail"
-                class="form-control"
-                placeholder="Email address"
-                pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                required
-                autofocus>
-              <label for="inputEmail"></label>
-            </div>
-
-            <div class="form-label-group">
-              <input ngModel name="password" type="password" placeholder="Password" required>
-              <label for="inputEmail"></label>
-            </div>
-
-            <div class="form-label-group">
-              <input ngModel name="confirmPassword" type="password" placeholder="Confirm Password" required>
-            </div>
-            <hr class="my-4">
-            <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-          </form>
-
-          <div *ngIf="errors && errors.length > 0">
-            <br>
-            <p *ngFor="let error of errors">
-              {{ error.detail }}
-            </p>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

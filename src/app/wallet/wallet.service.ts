@@ -3,15 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WalletService {
-
-  constructor(private http: HttpClient) { }
-
-  // register(userData): Observable<any> {
-  //   return this.http.post('/api/v1/user/register', userData);
-  // }
+  constructor(private http: HttpClient) {}
 
   getAddressDetail(): Observable<any> {
     const userId = JSON.parse(localStorage.getItem('app-meta')).userId;

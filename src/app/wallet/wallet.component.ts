@@ -4,31 +4,31 @@ import { Observable, from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { WalletService } from './wallet.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SendDialogComponent } from '../dialog/send/send-dialog.component'
+import { SendDialogComponent } from '../dialog/send-dialog/send-dialog.component';
 import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.component';
 import { TxDialogComponent } from '../dialog/tx-dialog/tx-dialog.component';
 import { AddressDialogComponent } from '../dialog/address-dialog/address-dialog.component';
 import { ReceiveDialogComponent } from '../dialog/receive-dialog/receive-dialog.component';
 
 interface Transaction {
-  timeStamp: string,
-  txId: string,
-  blockHeight: number,
-  confirmations: number | string
+  timeStamp: string;
+  txId: string;
+  blockHeight: number;
+  confirmations: number | string;
 }
 
 interface UncTransaction {
-  timeStamp: string,
-  txId: string
+  timeStamp: string;
+  txId: string;
 }
 
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.scss']
+  styleUrls: ['./wallet.component.scss'],
 })
 export class WalletComponent implements OnInit {
   userName: string;
@@ -39,14 +39,16 @@ export class WalletComponent implements OnInit {
   totalSent: number;
   totalReceived: number;
   btcPrice: number;
-  spinner: boolean;
-  wallet: boolean;
+  spinner: boolean = false;
+  wallet: boolean = false;
+  error: boolean = false;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  .pipe(
-    map(result => result.matches),
-    shareReplay()
-  );
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
 
   constructor(
     private walletService: WalletService,
@@ -54,7 +56,7 @@ export class WalletComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.getUserName();
@@ -63,9 +65,13 @@ export class WalletComponent implements OnInit {
 
   sendDialog(): void {
     this.dialog.open(SendDialogComponent, {
-      data: {balance: this.balance, btcPrice: this.btcPrice},
+      data: {
+        address: this.address,
+        balance: this.balance,
+        btcPrice: this.btcPrice,
+      },
       disableClose: true,
-      maxWidth: '90vw !important'
+      maxWidth: '90vw !important',
     });
   }
 
@@ -73,17 +79,16 @@ export class WalletComponent implements OnInit {
     this.dialog.open(ReceiveDialogComponent, {
       data: this.address,
       disableClose: true,
-      maxWidth: '90vw !important'
-    })
+      maxWidth: '90vw !important',
+    });
   }
 
-  
   uncTxDialog(): void {
     this.dialog.open(UncTxDialogComponent, {
       data: this.unconfirmed,
       disableClose: true,
       maxWidth: '90vw !important',
-      maxHeight: '500px'
+      maxHeight: '500px',
     });
   }
 
@@ -92,7 +97,7 @@ export class WalletComponent implements OnInit {
       data: this.transactions,
       disableClose: true,
       maxWidth: '90vw !important',
-      maxHeight: '500px'
+      maxHeight: '500px',
     });
   }
 
@@ -100,8 +105,8 @@ export class WalletComponent implements OnInit {
     this.dialog.open(AddressDialogComponent, {
       data: this.address,
       disableClose: true,
-      maxWidth: '90vw !important'
-    })
+      maxWidth: '90vw !important',
+    });
   }
 
   getUserName() {
@@ -124,15 +129,15 @@ export class WalletComponent implements OnInit {
         this.wallet = true;
       },
       (err) => {
-        console.log(err);
+        this.error = true;
+        this.spinner = false;
       }
-    )
+    );
   }
 
   openSnackBar() {
     this._snackBar.open('Copied!', '', {
-      duration: 2000
+      duration: 2000,
     });
   }
-
 }

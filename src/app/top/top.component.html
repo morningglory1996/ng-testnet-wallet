@@ -1,29 +1,47 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md first-col">
-        <div class="jumbotron text-container">
-            <h1 class="mat-h1">Testnet Wallet</h1>
-            <p class="lead">Simple Wallet for Bitcoin Testnet</p>
-            <hr class="my-4">
-            <p>By using Bitcoin, You can transfer money without relying on a third party.</p>
-            <div *ngIf="!authService.isAuthenticated()" style="margin-top: 30px;">
-              <button class="register" mat-raised-button routerLink="/register" color="primary">新規登録</button>
-              <button class="login" mat-raised-button routerLink="/login">ログイン</button>
-            </div>
-            <div *ngIf="authService.isAuthenticated()" style="margin-top: 30px;">
-              <button mat-raised-button color="primary" [routerLink]="['/wallet', userId]">あなたのウォレット</button>
-            </div>
-
+  <div class="row">
+    <div class="col-md first-col">
+      <div class="jumbotron text-container">
+        <h1 class="mat-h1">Testnet Wallet</h1>
+        <p class="lead">Simple Wallet for Bitcoin Testnet</p>
+        <hr class="my-4" />
+        <p>
+          By using Bitcoin, You can transfer money without relying on a third
+          party.
+        </p>
+        <div *ngIf="!authService.isAuthenticated()" style="margin-top: 30px;">
+          <button
+            class="register"
+            mat-raised-button
+            routerLink="/register"
+            color="primary"
+          >
+            新規登録
+          </button>
+          <button class="login" mat-raised-button routerLink="/login">
+            ログイン
+          </button>
         </div>
-      </div>
-
-      <div class="col-md second-col">
-        <div class="jumbotron img-container">
-            <img class="img-fluid" src="../../assets/img/top-image.svg" alt="top-image">
+        <div *ngIf="authService.isAuthenticated()" style="margin-top: 30px;">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/wallet', userId]"
+          >
+            あなたのウォレット
+          </button>
         </div>
       </div>
     </div>
+
+    <div class="col-md second-col">
+      <div class="jumbotron img-container">
+        <img
+          class="img-fluid"
+          src="../../assets/img/top-image.svg"
+          alt="top-image"
+        />
+      </div>
+    </div>
+  </div>
 </div>
-
-
-

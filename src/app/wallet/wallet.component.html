@@ -1,5 +1,5 @@
 <div *ngIf="wallet" class="grid-container">
-  <h1 style="float: left;padding: 5px;">{{ userName }}さんのウォレット</h1>
+  <h1 style="float: left; padding: 5px;">{{ userName }}さんのウォレット</h1>
   <button
     mat-raised-button
     (click)="getAddressDetail()"
@@ -23,14 +23,21 @@
           <mat-card-content>
             <h2>
               {{ address }}
-              <span mat-button [cdkCopyToClipboard]='address' (click)="openSnackBar()" style="cursor: pointer;">
-                <mat-icon style="vertical-align: middle;">content_copy</mat-icon>
+              <span
+                mat-button
+                [cdkCopyToClipboard]="address"
+                (click)="openSnackBar()"
+                style="cursor: pointer;"
+              >
+                <mat-icon style="vertical-align: middle;"
+                  >content_copy</mat-icon
+                >
               </span>
             </h2>
           </mat-card-content>
-          <mat-card-actions  style="margin-top: 30px;">
+          <mat-card-actions style="margin-top: 30px;">
             <button mat-stroked-button (click)="addressDialog()">
-              <mat-icon >qr_code_scanner</mat-icon>
+              <mat-icon>qr_code_scanner</mat-icon>
               QRコード
             </button>
           </mat-card-actions>
@@ -40,21 +47,23 @@
 
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
-        <div style="border-left: 5px solid #02ad9c;height: 100%;">
+        <div style="border-left: 5px solid #02ad9c; height: 100%;">
           <mat-card-header>
             <mat-card-title>Balance</mat-card-title>
             <mat-card-subtitle>残高</mat-card-subtitle>
           </mat-card-header>
-          <mat-icon mat-card-image class="card-images">account_balance_wallet</mat-icon>
+          <mat-icon mat-card-image class="card-images"
+            >account_balance_wallet</mat-icon
+          >
           <mat-card-content>
-            <h1>{{balance}} satoshi</h1>
+            <h1>{{ balance }} satoshi</h1>
             <p>
               <span>
                 <mat-icon style="vertical-align: middle;">waves</mat-icon>
               </span>
-              ￥{{((btcPrice * 1e-8) * balance).toFixed(2)}}
+              ￥{{ (btcPrice * 1e-8 * balance).toFixed(2) }}
             </p>
-            <p style="margin-top:40px;">1BTC = ￥ {{btcPrice}}</p>
+            <p style="margin-top: 40px;">1BTC = ￥ {{ btcPrice }}</p>
           </mat-card-content>
         </div>
       </mat-card>
@@ -62,7 +71,7 @@
 
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
-        <div style="border-left: 5px solid #6685ff;height: 100%;">
+        <div style="border-left: 5px solid #6685ff; height: 100%;">
           <mat-card-header>
             <mat-card-title>Send & Receive</mat-card-title>
             <mat-card-subtitle>送受信</mat-card-subtitle>
@@ -88,7 +97,7 @@
 
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
-        <div style="border-left: 5px solid #113045;height: 100%;">
+        <div style="border-left: 5px solid #113045; height: 100%;">
           <mat-card-header>
             <mat-card-title>Transactions</mat-card-title>
             <mat-card-subtitle>取引</mat-card-subtitle>
@@ -96,14 +105,18 @@
           <mat-icon mat-card-image class="card-images">list_alt</mat-icon>
           <mat-card-content>
             <h2>
-              <span [matBadge]="unconfirmed.length" matBadgeOverlap="false">Unconfirmed Transactions</span>
+              <span [matBadge]="unconfirmed.length" matBadgeOverlap="false"
+                >Unconfirmed Transactions</span
+              >
             </h2>
             <button mat-stroked-button (click)="uncTxDialog()">
               <mat-icon>search</mat-icon>
               View Details
             </button>
-            <h2  style="margin-top: 15px;">
-              <span [matBadge]="transactions.length" matBadgeOverlap="false">Confirmed Transactions</span>
+            <h2 style="margin-top: 15px;">
+              <span [matBadge]="transactions.length" matBadgeOverlap="false"
+                >Confirmed Transactions</span
+              >
             </h2>
             <button mat-stroked-button (click)="txDialog()">
               <mat-icon>search</mat-icon>
@@ -113,11 +126,13 @@
         </div>
       </mat-card>
     </mat-grid-tile>
-
   </mat-grid-list>
-
 </div>
 
 <div class="spinner" *ngIf="spinner">
   <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="error">
+  <h1>情報の取得に失敗しました</h1>
 </div>
