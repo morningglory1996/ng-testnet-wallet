@@ -6,13 +6,13 @@
             <p class="lead">Simple Wallet for Bitcoin Testnet</p>
             <hr class="my-4">
             <p>By using Bitcoin, You can transfer money without relying on a third party.</p>
-            <span *ngIf="!authService.isAuthenticated()">
+            <div *ngIf="!authService.isAuthenticated()" style="margin-top: 30px;">
               <button class="register" mat-raised-button routerLink="/register" color="primary">新規登録</button>
               <button class="login" mat-raised-button routerLink="/login">ログイン</button>
-            </span>
-            <span *ngIf="authService.isAuthenticated()">
+            </div>
+            <div *ngIf="authService.isAuthenticated()" style="margin-top: 30px;">
               <button mat-raised-button color="primary" [routerLink]="['/wallet', userId]">あなたのウォレット</button>
-            </span>
+            </div>
 
         </div>
       </div>

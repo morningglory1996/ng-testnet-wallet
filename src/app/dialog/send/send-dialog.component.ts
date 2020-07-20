@@ -14,9 +14,8 @@ import { DialogService } from '../shared/dialog.service';
 export class SendDialogComponent implements OnInit, OnDestroy {
   sendingForm: FormGroup;
   amount = new FormControl('', [Validators.required, Validators.min(1)]);
-  recipient = new FormControl('', [Validators.required]);
+  recipient = new FormControl('',[Validators.required, Validators.pattern('^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}')]);
   fee = new FormControl('', [Validators.required]);
-  convertJPY: number = 0;
   inputAddress: string;
   inputAmount: number = 0;
 
@@ -42,6 +41,9 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   }
 
   recipientErrorMessage() {
+    if (this.recipient.hasError('pattern')) {
+      return '無効なアドレスです'
+    }
     return this.recipient.hasError('required') ? '宛先を入力してください' : '';
   }
 
@@ -49,7 +51,7 @@ export class SendDialogComponent implements OnInit, OnDestroy {
     if (this.amount.hasError('required')) {
       return '送金額を入力してください';
     }
-    return this.amount.hasError('min') ? '送金額は1satoshi以上で入力してください' : '';
+    return this.amount.hasError('min') ? '送金額は1satoshi以上を入力してください' : '';
   }
 
   feeErrorMessage() {
