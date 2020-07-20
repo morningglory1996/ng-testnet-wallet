@@ -31,9 +31,7 @@
   word-wrap: break-word;
   text-align: center;
   margin-top: 30px;
-}
 
-.mat-card-content {
   p {
     font-size: 18px;
   }
@@ -44,13 +42,11 @@
 }
 
 .mat-card-actions {
+
+  text-align: center;
   button {
     font-size: 18px;
   }
-}
-
-.mat-card-actions {
-  text-align: center;
 }
 
 .spinner {
