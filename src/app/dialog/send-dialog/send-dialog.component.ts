@@ -20,7 +20,7 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   sendingForm: FormGroup;
   recipient = new FormControl('', [
     Validators.required,
-    Validators.pattern('^[2mnt][1-9A-HJ-NP-Za-km-z]{26,35}'),
+    Validators.pattern('^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}'),
     this.internalTxValidator.bind(this),
   ]);
   amount = new FormControl('', [Validators.required, Validators.min(1)]);

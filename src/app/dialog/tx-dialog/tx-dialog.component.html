@@ -10,23 +10,52 @@
     class="mat-elevation-z8"
   >
     <ng-container matColumnDef="timeStamp">
-      <th mat-header-cell *matHeaderCellDef>Time Stamp</th>
-      <td mat-cell *matCellDef="let element">{{ element.timeStamp }}</td>
+      <th mat-header-cell *matHeaderCellDef>Confirmed</th>
+      <td mat-cell *matCellDef="let element">{{ element.confirmed }}</td>
     </ng-container>
 
     <ng-container matColumnDef="txId">
-      <th mat-header-cell *matHeaderCellDef>Hash</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="border-left: 1px solid rgba(0, 0, 0, 0.12);"
+      >
+        Transactions
+      </th>
       <td
         mat-cell
         *matCellDef="let element"
-        style="word-wrap: break-word; white-space: pre-wrap;"
+        style="
+          word-wrap: break-word;
+          white-space: pre-wrap;
+          border-left: 1px solid rgba(0, 0, 0, 0.12);
+        "
       >
         <a
           [href]="['https://tbtc.bitaps.com/' + element.txId]"
           target="”_blank”"
           rel="”noopener”"
-          >{{ element.txId }}</a
-        >
+          >{{ element.txId }}
+        </a>
+        <div>
+          <span class="badge badge-info">
+            {{ element.confirmations }} confirmations
+          </span>
+        </div>
+        <div *ngIf="element.type === 'send'" style="margin-top: 5px;">
+          <span style="color: #e55;">
+            <mat-icon style="vertical-align: middle;">arrow_circle_up</mat-icon>
+            {{ element.amount }} satoshi
+          </span>
+        </div>
+        <div *ngIf="element.type === 'receive'" style="margin-top: 5px;">
+          <span style="color: #4caf50;">
+            <mat-icon style="vertical-align: middle;"
+              >arrow_circle_down
+            </mat-icon>
+            +{{ element.amount }} satoshi
+          </span>
+        </div>
       </td>
     </ng-container>
 

@@ -61,9 +61,16 @@
               <span>
                 <mat-icon style="vertical-align: middle;">waves</mat-icon>
               </span>
-              ￥{{ (btcPrice * 1e-8 * balance).toFixed(2) }}
+              {{ btcPrice * 1e-8 * balance | currency: "JPY" }}
             </p>
-            <p style="margin-top: 40px;">1BTC = ￥ {{ btcPrice }}</p>
+            <p style="margin-top: 40px;">
+              {{ btcPrice | currency: "JPY" }}
+              <mat-icon style="vertical-align: middle;">
+                show_chart
+              </mat-icon>
+              <span> {{ changeRatio }}% </span>
+              <span style="font-size: smaller;">24hrs</span>
+            </p>
           </mat-card-content>
         </div>
       </mat-card>
