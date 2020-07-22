@@ -1,27 +1,40 @@
 <div *ngIf="wallet" class="grid-container">
-  <h1 style="float: left; padding: 5px;">{{ userName }}さんのウォレット</h1>
-  <button
-    mat-raised-button
-    (click)="getAddressDetail()"
-    color="primary"
-    style="margin-left: 10px;"
-    matTooltip="ウォレットを更新する"
-    matTooltipPosition="right"
-  >
-    <mat-icon>cached</mat-icon>
-  </button>
+  <h1>{{ userName }}さんのウォレット</h1>
 
   <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
-        <div style="border-left: 5px solid #5cc6f0; height: 100%;">
+        <div style="border-left: 5px solid #1582ad; height: 100%;">
           <mat-card-header>
-            <mat-card-title>Address</mat-card-title>
+            <mat-card-title>
+              Address
+              <mat-icon
+                style="color: #1582ad; vertical-align: middle; cursor: pointer;"
+                (click)="addressDialog()"
+                >qr_code_scanner
+              </mat-icon>
+            </mat-card-title>
             <mat-card-subtitle>アドレス</mat-card-subtitle>
           </mat-card-header>
-          <mat-icon mat-card-image class="card-images">qr_code</mat-icon>
+          <div style="text-align: center;">
+            <button
+              mat-fab
+              style="background: #1582ad; color: white;"
+              disabled="true"
+              class="card-icon"
+            >
+              <mat-icon>qr_code</mat-icon>
+            </button>
+          </div>
+          <hr />
           <mat-card-content>
             <h2>
+              Bitcoin testnet address
+            </h2>
+            <span style="color: #a8abaf; font-size: smaller;">
+              P2PKH
+            </span>
+            <h3 style="margin-top: 15px;">
               {{ address }}
               <span
                 mat-button
@@ -33,14 +46,8 @@
                   >content_copy</mat-icon
                 >
               </span>
-            </h2>
+            </h3>
           </mat-card-content>
-          <mat-card-actions style="margin-top: 30px;">
-            <button mat-stroked-button (click)="addressDialog()">
-              <mat-icon>qr_code_scanner</mat-icon>
-              QRコード
-            </button>
-          </mat-card-actions>
         </div>
       </mat-card>
     </mat-grid-tile>
@@ -52,24 +59,61 @@
             <mat-card-title>Balance</mat-card-title>
             <mat-card-subtitle>残高</mat-card-subtitle>
           </mat-card-header>
-          <mat-icon mat-card-image class="card-images"
-            >account_balance_wallet</mat-icon
-          >
+          <div style="text-align: center;">
+            <button
+              mat-fab
+              style="background: #02ad9c; color: white;"
+              disabled="true"
+              class="card-icon"
+            >
+              <mat-icon>account_balance_wallet</mat-icon>
+            </button>
+          </div>
+          <hr />
           <mat-card-content>
-            <h1>{{ balance }} satoshi</h1>
-            <p>
-              <span>
-                <mat-icon style="vertical-align: middle;">waves</mat-icon>
-              </span>
+            <h1 style="margin-bottom: 0px;">{{ balance }} satoshi</h1>
+            <p style="font-size: 15px; color: #7c7f83;">
+              <mat-icon style="vertical-align: middle; font-size: 20px;"
+                >arrow_right_alt</mat-icon
+              >
               {{ btcPrice * 1e-8 * balance | currency: "JPY" }}
             </p>
-            <p style="margin-top: 40px;">
+            <p style="margin-top: 20px;">
+              <span>
+                <img
+                  src="../../assets/img/bitcoin.png"
+                  alt="bitcoin"
+                  style="width: 20px;"
+                />
+              </span>
+              Bitcoin
+            </p>
+            <p style="font-size: 15px;">
               {{ btcPrice | currency: "JPY" }}
-              <mat-icon style="vertical-align: middle;">
-                show_chart
-              </mat-icon>
-              <span> {{ changeRatio }}% </span>
-              <span style="font-size: smaller;">24hrs</span>
+              <span *ngIf="changeRatio.indexOf('-') != -1" style="color: red;">
+                <mat-icon
+                  style="
+                    vertical-align: middle;
+                    margin-left: 10px;
+                    transform: rotateY(180deg);
+                  "
+                >
+                  show_chart
+                </mat-icon>
+                {{ changeRatio }}%
+                <span style="font-size: smaller; color: #a8abaf;">24hrs</span>
+              </span>
+
+              <span
+                *ngIf="changeRatio.indexOf('-') === -1"
+                style="color: #28a745;"
+              >
+                <mat-icon style="vertical-align: middle; margin-left: 10px;">
+                  show_chart
+                </mat-icon>
+                +{{ changeRatio }}%
+                <span style="font-size: smaller; color: #a8abaf;">24hrs</span>
+              </span>
             </p>
           </mat-card-content>
         </div>
@@ -83,18 +127,36 @@
             <mat-card-title>Send & Receive</mat-card-title>
             <mat-card-subtitle>送受信</mat-card-subtitle>
           </mat-card-header>
-          <mat-icon mat-card-image class="card-images">compare_arrows</mat-icon>
+          <div style="text-align: center;">
+            <button
+              mat-fab
+              style="background: #6685ff; color: white;"
+              disabled="true"
+              class="card-icon"
+            >
+              <mat-icon>compare_arrows</mat-icon>
+            </button>
+          </div>
+          <hr />
           <mat-card-content>
             <h3>Total Sent ➡ {{ totalSent }} satoshi</h3>
             <h3>Total Received ➡ {{ totalReceived }} satoshi</h3>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-stroked-button (click)="sendDialog()">
-              <mat-icon>send</mat-icon>
+            <button
+              mat-raised-button
+              (click)="sendDialog()"
+              style="margin-right: 8px;"
+            >
+              <mat-icon style="color: #6685ff;">send</mat-icon>
               送信
             </button>
-            <button mat-stroked-button (click)="receiveDialog()">
-              <mat-icon>arrow_circle_down</mat-icon>
+            <button
+              mat-raised-button
+              (click)="receiveDialog()"
+              style="margin-left: 8px;"
+            >
+              <mat-icon style="color: #6685ff;">arrow_circle_down</mat-icon>
               受信
             </button>
           </mat-card-actions>
@@ -109,7 +171,17 @@
             <mat-card-title>Transactions</mat-card-title>
             <mat-card-subtitle>取引</mat-card-subtitle>
           </mat-card-header>
-          <mat-icon mat-card-image class="card-images">list_alt</mat-icon>
+          <div style="text-align: center;">
+            <button
+              mat-fab
+              style="background: #113045; color: white;"
+              disabled="true"
+              class="card-icon"
+            >
+              <mat-icon>list_alt</mat-icon>
+            </button>
+          </div>
+          <hr />
           <mat-card-content>
             <h2>
               <span [matBadge]="unconfirmed.length" matBadgeOverlap="false"
@@ -135,6 +207,17 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+
+<button
+  mat-fab
+  (click)="getAddressDetail()"
+  color="primary"
+  id="reload"
+  matTooltip="ウォレットを更新する"
+  matTooltipPosition="right"
+>
+  <mat-icon>cached</mat-icon>
+</button>
 
 <div class="spinner" *ngIf="spinner">
   <mat-spinner></mat-spinner>

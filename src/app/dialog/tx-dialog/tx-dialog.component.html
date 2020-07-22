@@ -44,15 +44,13 @@
         </div>
         <div *ngIf="element.type === 'send'" style="margin-top: 5px;">
           <span style="color: #e55;">
-            <mat-icon style="vertical-align: middle;">arrow_circle_up</mat-icon>
+            <mat-icon style="vertical-align: middle;">north_east</mat-icon>
             {{ element.amount }} satoshi
           </span>
         </div>
         <div *ngIf="element.type === 'receive'" style="margin-top: 5px;">
           <span style="color: #4caf50;">
-            <mat-icon style="vertical-align: middle;"
-              >arrow_circle_down
-            </mat-icon>
+            <mat-icon style="vertical-align: middle;">south_east</mat-icon>
             +{{ element.amount }} satoshi
           </span>
         </div>

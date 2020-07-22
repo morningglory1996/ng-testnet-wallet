@@ -22,19 +22,18 @@
   text-align: center;
 }
 
-.card-images {
-  font-size: 80px;
-  text-align: center;
+hr {
+  width: 90%;
+}
+
+.card-icon {
+  box-shadow: none !important;
 }
 
 .mat-card-content {
   word-wrap: break-word;
   text-align: center;
   margin-top: 30px;
-
-  p {
-    font-size: 18px;
-  }
 
   h2 {
     margin-bottom: 0;
@@ -53,4 +52,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#reload {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
 }
