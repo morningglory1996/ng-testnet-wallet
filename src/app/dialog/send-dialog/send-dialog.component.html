@@ -5,12 +5,11 @@
 <div mat-dialog-content style="text-align: center;">
   <form [formGroup]="sendingForm" (ngSubmit)="openConfirm(sendingForm)">
     <mat-form-field appearance="standard">
-      <mat-label>宛先</mat-label>
+      <p matPrefix>宛先:</p>
       <input
         matInput
         formControlName="recipient"
         type="text"
-        placeholder="recipient"
         autofocus
         #inputElm
         [(ngModel)]="inputAddress"
@@ -29,39 +28,46 @@
     </mat-form-field>
 
     <mat-form-field appearance="standard">
-      <mat-label>送金額</mat-label>
+      <p matPrefix>送金額:</p>
       <input
         matInput
         [(ngModel)]="inputAmount"
         formControlName="amount"
         type="number"
-        placeholder="amount"
         autofocus
       />
       <span matSuffix>satoshi</span>
       <mat-error *ngIf="amount.invalid">{{ amountErrorMessage() }}</mat-error>
     </mat-form-field>
 
-    <div style="text-align: left; color: rgb(176, 176, 176);">
-      <mat-icon style="font-size: 20px; float: left;">waves</mat-icon>
-      <p style="float: left;">
+    <div
+      style="text-align: left; color: rgb(176, 176, 176); margin-bottom: 20px;"
+    >
+      <p>
+        <span>
+          <mat-icon style="vertical-align: middle;">waves</mat-icon>
+        </span>
         ￥{{ (data.btcPrice * 1e-8 * inputAmount).toFixed(2) }}
-        <span style="margin-left: 30px;">残高: {{ data.balance }} satoshi</span>
+        <span style="margin-left: 30px;">
+          残高: {{ data.balance }} satoshi
+        </span>
       </p>
     </div>
 
-    <mat-form-field appearance="standard">
-      <mat-label>手数料</mat-label>
-      <input
-        matInput
+    <div style="text-align: left;">
+      <mat-label>送金手数料</mat-label>
+      <mat-slider
         formControlName="fee"
-        type="number"
-        placeholder="fee"
-        autofocus
-      />
-      <span matSuffix>satoshi</span>
-      <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
-    </mat-form-field>
+        class="example-margin"
+        [max]="3000"
+        [min]="500"
+        [step]="100"
+        [thumbLabel]="true"
+        style="width: 100%;"
+        color="primary"
+      >
+      </mat-slider>
+    </div>
 
     <button
       mat-raised-button

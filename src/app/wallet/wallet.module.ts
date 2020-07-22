@@ -16,7 +16,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { WalletService } from './wallet.service';
+import { WalletService } from './shared/wallet.service';
 import { WalletComponent } from './wallet.component';
 
 const routes: Routes = [

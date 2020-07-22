@@ -6,16 +6,10 @@ import { map, shareReplay } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-interface Transaction {
-  timeStamp: string;
-  txId: string;
-  blockHeight: number;
-  confirmations: number | string;
-}
-
 interface UncTransaction {
   timeStamp: string;
   txId: string;
+  type: string;
 }
 
 @Component({
@@ -25,7 +19,7 @@ interface UncTransaction {
 })
 export class UncTxDialogComponent implements OnInit {
   displayedColumns: string[] = ['date', 'txId'];
-  dataSource = new MatTableDataSource<Transaction>(this.data);
+  dataSource = new MatTableDataSource<UncTransaction>(this.data);
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -37,7 +31,7 @@ export class UncTxDialogComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Transaction[],
+    @Inject(MAT_DIALOG_DATA) public data: UncTransaction[],
     private breakpointObserver: BreakpointObserver,
     public dialogRef: MatDialogRef<UncTxDialogComponent>
   ) {}

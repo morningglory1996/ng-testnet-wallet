@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { WalletService } from '../../wallet/wallet.service';
+import { WalletService } from '../../wallet/shared/wallet.service';
 
 @Component({
   selector: 'app-confirm-dialog',

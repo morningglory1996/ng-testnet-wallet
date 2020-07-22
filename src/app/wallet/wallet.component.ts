@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { WalletService } from './wallet.service';
+import { WalletService } from './shared/wallet.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -23,6 +23,7 @@ interface Transaction {
 interface UncTransaction {
   timeStamp: string;
   txId: string;
+  type: string;
 }
 
 @Component({
@@ -39,6 +40,7 @@ export class WalletComponent implements OnInit {
   totalSent: number;
   totalReceived: number;
   btcPrice: number;
+  changeRatio: string;
   spinner: boolean = false;
   wallet: boolean = false;
   error: boolean = false;
@@ -120,11 +122,12 @@ export class WalletComponent implements OnInit {
       (data) => {
         this.balance = data.balance;
         this.address = data.address;
-        this.unconfirmed = data.filterUnTxs;
-        this.transactions = data.filterTxs;
+        this.unconfirmed = data.unconfirmedTxs;
+        this.transactions = data.confirmedTxs;
         this.totalSent = data.totalSent;
         this.totalReceived = data.totalReceived;
-        this.btcPrice = data.currentJPY;
+        this.btcPrice = Math.floor(data.price);
+        this.changeRatio = data.changeRatio.toFixed(2);
         this.spinner = false;
         this.wallet = true;
       },
