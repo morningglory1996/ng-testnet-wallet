@@ -25,8 +25,10 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   ]);
   amount = new FormControl('', [Validators.required, Validators.min(1)]);
   fee = new FormControl('', [Validators.required]);
+  type = new FormControl();
   inputAddress: string;
-  inputAmount: number = 0;
+  inputAmount: number;
+  feeType: string = 'lowFee';
   isInternalTx: boolean = false;
 
   constructor(
@@ -41,6 +43,7 @@ export class SendDialogComponent implements OnInit, OnDestroy {
       amount: this.amount,
       recipient: this.recipient,
       fee: this.fee,
+      type: this.type,
     });
 
     this._dialogService.scanStart();
@@ -80,6 +83,8 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   }
 
   openConfirm(sendingForm): void {
+    const feeType = sendingForm.value.fee;
+    sendingForm.value.fee = this.data[feeType];
     this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
       data: sendingForm.value,

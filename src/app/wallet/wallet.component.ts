@@ -41,6 +41,9 @@ export class WalletComponent implements OnInit {
   totalReceived: number;
   btcPrice: number;
   changeRatio: string;
+  highFee: number;
+  mediumFee: number;
+  lowFee: number;
   spinner: boolean = false;
   wallet: boolean = false;
   error: boolean = false;
@@ -71,6 +74,9 @@ export class WalletComponent implements OnInit {
         address: this.address,
         balance: this.balance,
         btcPrice: this.btcPrice,
+        highFee: this.highFee,
+        mediumFee: this.mediumFee,
+        lowFee: this.lowFee,
       },
       disableClose: true,
       maxWidth: '90vw !important',
@@ -128,6 +134,9 @@ export class WalletComponent implements OnInit {
         this.totalReceived = data.totalReceived;
         this.btcPrice = Math.floor(data.price);
         this.changeRatio = data.changeRatio.toFixed(2);
+        this.highFee = data.highFee;
+        this.mediumFee = data.mediumFee;
+        this.lowFee = data.lowFee;
         this.spinner = false;
         this.wallet = true;
       },

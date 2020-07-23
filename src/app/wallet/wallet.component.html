@@ -87,6 +87,9 @@
                 />
               </span>
               Bitcoin
+              <span style="font-size: 8px;">
+                /JPY
+              </span>
             </p>
             <p style="font-size: 15px;">
               {{ btcPrice | currency: "JPY" }}
@@ -139,10 +142,16 @@
           </div>
           <hr />
           <mat-card-content>
-            <h3>Total Sent ➡ {{ totalSent }} satoshi</h3>
-            <h3>Total Received ➡ {{ totalReceived }} satoshi</h3>
+            <p style="margin: 0 0; color: #7c7f83;">
+              Total Sent
+            </p>
+            <h2>{{ totalSent }} satoshi</h2>
+            <p style="margin: 0 0; color: #7c7f83;">
+              Total Received
+            </p>
+            <h2>{{ totalReceived }} satoshi</h2>
           </mat-card-content>
-          <mat-card-actions>
+          <div style="text-align: center;">
             <button
               mat-raised-button
               (click)="sendDialog()"
@@ -159,7 +168,7 @@
               <mat-icon style="color: #6685ff;">arrow_circle_down</mat-icon>
               受信
             </button>
-          </mat-card-actions>
+          </div>
         </div>
       </mat-card>
     </mat-grid-tile>
@@ -185,21 +194,21 @@
           <mat-card-content>
             <h2>
               <span [matBadge]="unconfirmed.length" matBadgeOverlap="false"
-                >Unconfirmed Transactions</span
-              >
+                >Unconfirmed Transactions
+              </span>
             </h2>
-            <button mat-stroked-button (click)="uncTxDialog()">
-              <mat-icon>search</mat-icon>
-              View Details
+            <button mat-raised-button (click)="uncTxDialog()">
+              <mat-icon>arrow_right</mat-icon>
+              取引を見る
             </button>
             <h2 style="margin-top: 15px;">
               <span [matBadge]="transactions.length" matBadgeOverlap="false"
-                >Confirmed Transactions</span
-              >
+                >Confirmed Transactions
+              </span>
             </h2>
-            <button mat-stroked-button (click)="txDialog()">
-              <mat-icon>search</mat-icon>
-              View Details
+            <button mat-raised-button (click)="txDialog()">
+              <mat-icon>arrow_right</mat-icon>
+              取引を見る
             </button>
           </mat-card-content>
         </div>
@@ -223,6 +232,8 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="error">
-  <h1>情報の取得に失敗しました</h1>
+<div *ngIf="error" style="text-align: center;">
+  <h1>
+    情報の取得に失敗しました。ページを更新して再度ログインしてください。
+  </h1>
 </div>
