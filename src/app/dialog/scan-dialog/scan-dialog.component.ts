@@ -8,7 +8,7 @@ import { DialogService } from '../shared/dialog.service';
   styleUrls: ['./scan-dialog.component.scss'],
 })
 export class ScanDialogComponent implements OnInit {
-  hasCamera: boolean = false;
+  hasCamera: boolean = true;
   scannerEnabled: boolean = true;
 
   constructor(

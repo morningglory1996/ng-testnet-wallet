@@ -139,6 +139,10 @@ export class WalletComponent implements OnInit {
         this.lowFee = data.lowFee;
         this.spinner = false;
         this.wallet = true;
+
+        if (this.error) {
+          this.error = false;
+        }
       },
       (err) => {
         this.error = true;
