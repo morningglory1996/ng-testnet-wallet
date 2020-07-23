@@ -8,6 +8,7 @@ import { DialogService } from '../shared/dialog.service';
   styleUrls: ['./scan-dialog.component.scss'],
 })
 export class ScanDialogComponent implements OnInit {
+  hasCamera: boolean = false;
   scannerEnabled: boolean = true;
 
   constructor(
@@ -20,6 +21,14 @@ export class ScanDialogComponent implements OnInit {
 
   sendData(result): void {
     this.dialogService.scanSuccess.next(result);
+  }
+
+  camerasFoundHandler(event) {
+    this.hasCamera = true;
+  }
+
+  camerasNotFoundHandler(event) {
+    this.hasCamera = false;
   }
 
   scanSuccessHandler(result): void {

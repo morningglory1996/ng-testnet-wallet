@@ -43,30 +43,46 @@
     <div
       style="text-align: left; color: rgb(176, 176, 176); margin-bottom: 20px;"
     >
-      <p>
-        <span>
-          <mat-icon style="vertical-align: middle;">waves</mat-icon>
-        </span>
+      <span *ngIf="!inputAmount">￥ 0.00</span>
+      <span *ngIf="inputAmount">
         ￥{{ (data.btcPrice * 1e-8 * inputAmount).toFixed(2) }}
-        <span style="margin-left: 30px;">
-          残高: {{ data.balance }} satoshi
-        </span>
-      </p>
+      </span>
+      <span style="margin-left: 10px;"> 残高: {{ data.balance }} satoshi </span>
     </div>
 
-    <div style="text-align: left;">
-      <mat-label>送金手数料</mat-label>
-      <mat-slider
-        formControlName="fee"
-        class="example-margin"
-        [max]="3000"
-        [min]="500"
-        [step]="100"
-        [thumbLabel]="true"
-        style="width: 100%;"
-        color="primary"
-      >
-      </mat-slider>
+    <div class="radio-container">
+      <p>送金手数料</p>
+      <mat-radio-group formControlName="fee" [(ngModel)]="feeType">
+        <mat-radio-button value="lowFee" [checked]="true">
+          節約
+        </mat-radio-button>
+        <mat-radio-button value="mediumFee">
+          普通
+        </mat-radio-button>
+        <mat-radio-button value="highFee">
+          優先
+        </mat-radio-button>
+        <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
+      </mat-radio-group>
+    </div>
+
+    <input formControlName="type" type="hidden" [(ngModel)]="feeType" />
+
+    <div class="fee-container">
+      <p style="margin-bottom: 4px;">
+        送料見積り:
+        {{ (148 * 2 + 34 * 2 + 10 * (data[feeType] / 1000)).toFixed(0) }}
+        satoshi
+      </p>
+      <span style="font-size: smaller;" class="fee">
+        節約({{ data.lowFee }}/kb)
+      </span>
+      <span style="font-size: smaller;" class="fee">
+        普通({{ data.mediumFee }}/kb)
+      </span>
+      <span style="font-size: smaller;" class="fee">
+        優先({{ data.highFee }}/kb)
+      </span>
     </div>
 
     <button

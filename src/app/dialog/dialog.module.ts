@@ -14,7 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatRadioModule } from '@angular/material/radio';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AddressDialogComponent } from './address-dialog/address-dialog.component';
@@ -43,7 +43,7 @@ import { ScanDialogComponent } from './scan-dialog/scan-dialog.component';
     MatPaginatorModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatSliderModule,
+    MatRadioModule,
     QRCodeModule,
     ZXingScannerModule,
   ],

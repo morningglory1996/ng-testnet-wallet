@@ -26,3 +26,11 @@ button:active {
   outline: none !important;
   box-shadow: none !important;
 }
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #2962ff !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #2962ff !important;
+}

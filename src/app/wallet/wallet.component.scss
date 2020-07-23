@@ -23,6 +23,7 @@
 }
 
 hr {
+  margin-top: 2rem;
   width: 90%;
 }
 
@@ -40,13 +41,6 @@ hr {
   }
 }
 
-.mat-card-actions {
-  text-align: center;
-  button {
-    font-size: 18px;
-  }
-}
-
 .spinner {
   height: 100%;
   display: flex;
@@ -54,8 +48,12 @@ hr {
   align-items: center;
 }
 
+.mat-icon {
+  vertical-align: middle;
+}
+
 #reload {
   position: fixed;
-  bottom: 15px;
-  right: 15px;
+  bottom: 20px;
+  right: 20px;
 }

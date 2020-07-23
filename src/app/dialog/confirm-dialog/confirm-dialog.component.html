@@ -17,7 +17,9 @@
     </p>
     <p>
       手数料:
-      <strong> {{ data.fee }} satoshi </strong>
+      <strong *ngIf="data.type === 'lowFee'"> 節約 </strong>
+      <strong *ngIf="data.type === 'mediumFee'"> 普通 </strong>
+      <strong *ngIf="data.type === 'highFee'"> 優先 </strong>
     </p>
   </div>
   <div mat-dialog-actions>
@@ -28,7 +30,7 @@
       (click)="sendTx(); spinnerShow()"
       cdkFocusInitial
     >
-      OK
+      送金
     </button>
   </div>
 </div>

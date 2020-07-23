@@ -10,3 +10,23 @@
   width: 50%;
   margin-top: 30px;
 }
+
+.radio-container {
+  text-align: left;
+
+  .mat-radio-group {
+    .mat-radio-button ~ .mat-radio-button {
+      margin-left: 16px;
+    }
+  }
+}
+
+.fee-container {
+  text-align: left;
+  color: rgb(176, 176, 176);
+  margin-top: 10px;
+
+  .fee ~ .fee {
+    margin-left: 5px;
+  }
+}

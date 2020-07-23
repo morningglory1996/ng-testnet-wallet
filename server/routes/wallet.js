@@ -99,6 +99,18 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
       const price = response.data[1].quote.JPY.price;
       const changeRatio = response.data[1].quote.JPY.percent_change_24h;
 
+      const options3 = {
+        url:
+          "https://api.blockcypher.com/v1/btc/test3?token=" + config.BC_TOKEN,
+        method: "GET",
+        json: true,
+      };
+
+      const feeRates = await rp(options3);
+      const highFee = feeRates.high_fee_per_kb;
+      const mediumFee = feeRates.medium_fee_per_kb;
+      const lowFee = feeRates.low_fee_per_kb;
+
       return res.json({
         address,
         balance,
@@ -110,6 +122,9 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
         numberUnconfirmed,
         price,
         changeRatio,
+        highFee,
+        mediumFee,
+        lowFee,
       });
 
       function organizeTxs(txs) {
@@ -221,6 +236,7 @@ router.post("/:userId", UserCtrl.authMiddleware, async function (req, res) {
   const recipient = req.body.recipient;
   const amount = req.body.amount;
   const fee = req.body.fee;
+  const perSatoshi = Math.floor(fee / 1000);
   const userId = req.params.userId;
 
   if (!recipient) {
@@ -235,6 +251,14 @@ router.post("/:userId", UserCtrl.authMiddleware, async function (req, res) {
     return res.status(422).send({
       errors: [
         { title: "Transaction error", detail: "送金金額を入力してください" },
+      ],
+    });
+  }
+
+  if (!fee) {
+    return res.status(422).send({
+      errors: [
+        { title: "Transaction error", detail: "送金手数料を入力してください" },
       ],
     });
   }
@@ -301,6 +325,7 @@ router.post("/:userId", UserCtrl.authMiddleware, async function (req, res) {
         });
       }
 
+      const fee = 148 * count + 34 * 2 + 10 * perSatoshi;
       const change = balance - (amount + fee);
 
       txb.addOutput(recipient, amount);
