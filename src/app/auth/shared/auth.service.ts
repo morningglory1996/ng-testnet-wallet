@@ -39,13 +39,12 @@ export class AuthService {
 
   login(userData): Observable<any> {
     return this.http.post('/api/v1/user/login', userData).pipe(
-      map((data: { token: string; userId: string }) => {
-        const token = data.token;
-        const userId = data.userId;
+      map((data: string) => {
+        const token = data;
         this.decodedToken = jwt.decodeToken(token);
         localStorage.setItem('app-auth', token);
         localStorage.setItem('app-meta', JSON.stringify(this.decodedToken));
-        return { token, userId };
+        return { token, decodedToken: this.decodedToken };
       })
     );
   }

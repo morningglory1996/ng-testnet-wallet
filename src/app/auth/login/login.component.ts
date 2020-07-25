@@ -4,6 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { WebSocketService } from '../../websocket/web-socket.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +18,11 @@ export class LoginComponent implements OnInit {
   hide = true;
   errors = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private webSocketService: WebSocketService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -40,7 +46,8 @@ export class LoginComponent implements OnInit {
   login(loginForm) {
     this.authService.login(loginForm.value).subscribe(
       (result) => {
-        this.router.navigate(['/wallet/' + result.userId]);
+        this.webSocketService.connectWs(result.decodedToken.address);
+        this.router.navigate(['/wallet/' + result.decodedToken.userId]);
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error.errors;

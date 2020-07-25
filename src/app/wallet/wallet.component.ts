@@ -3,7 +3,6 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { WalletService } from './shared/wallet.service';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -57,7 +56,6 @@ export class WalletComponent implements OnInit {
 
   constructor(
     private walletService: WalletService,
-    private router: ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
