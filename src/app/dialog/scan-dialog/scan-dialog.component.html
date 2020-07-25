@@ -9,7 +9,7 @@
     <mat-icon>arrow_back</mat-icon>
   </button>
   <zxing-scanner
-    *ngIf="hasCamera"
+    [hidden]="!hasCamera"
     [enable]="scannerEnabled"
     (camerasFound)="camerasFoundHandler($event)"
     (camerasNotFound)="camerasNotFoundHandler($event)"

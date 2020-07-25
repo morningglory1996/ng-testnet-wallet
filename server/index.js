@@ -1,47 +1,45 @@
-'use strict'
+"use strict";
 
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const config = require('./config/index');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const config = require("./config/index");
 
-const SampleUser = require('./sample-user');
+const SampleUser = require("./sample-user");
 
-const userRouter = require('./routes/user');
-const walletRouter = require('./routes/wallet');
-const path = require('path');
+const userRouter = require("./routes/user");
+const walletRouter = require("./routes/wallet");
+const path = require("path");
 
-mongoose.connect(config.DB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-}).then(() => {
-  if(process.env.NODE_ENV !== 'production') {
-  console.log('MongoDB connection successful');
-    const sampleUser = new SampleUser();
-    // sampleUser.initDb();
-  }
-}).catch((error) => {
-  console.log(error);
-});
-
+mongoose
+  .connect(config.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => {
+    console.log("MongoDB connection successful");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/api/v1/user', userRouter);
-app.use('/api/v1/wallet', walletRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/wallet", walletRouter);
 
-if(process.env.NODE_ENV === 'production') {
-  const appPath = path.join(__dirname, '..', 'dist', 'ng-testnet-wallet');
+if (process.env.NODE_ENV === "production") {
+  const appPath = path.join(__dirname, "..", "dist", "ng-testnet-wallet");
   app.use(express.static(appPath));
-  app.get('*', function(req, res) {
-    res.sendFile(path.resolve(appPath, 'index.html'));
+  app.get("*", function (req, res) {
+    res.sendFile(path.resolve(appPath, "index.html"));
   });
 }
 
-const PORT = process.env.PORT || 8000; 
+const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, function(req, res) {
-  console.log('Listeing on ' + PORT);
+app.listen(PORT, function (req, res) {
+  console.log("Listeing on " + PORT);
 });

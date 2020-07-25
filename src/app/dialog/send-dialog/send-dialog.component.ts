@@ -83,11 +83,14 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   }
 
   openConfirm(sendingForm): void {
+    const recipient = sendingForm.value.recipient;
+    const amount = sendingForm.value.amount;
     const feeType = sendingForm.value.fee;
-    sendingForm.value.fee = this.data[feeType];
+    const fee = this.data[feeType];
+    const type = sendingForm.value.type;
     this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
-      data: sendingForm.value,
+      data: { recipient, amount, fee, type },
       disableClose: true,
     });
   }

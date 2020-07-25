@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { WebSocketService } from '../websocket/web-socket.service';
 
 @Component({
   selector: 'app-nav',
@@ -29,7 +30,8 @@ export class NavComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    private webSocketService: WebSocketService
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +75,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.webSocketService.closeWs();
   }
 
   closeSideNav() {
