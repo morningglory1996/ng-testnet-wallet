@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BC_TOKEN: '',
+  BC_TOKEN: '1b7ec28f450d42fa8ebe695de48b2088',
 };
 
 /*
