@@ -47,3 +47,4 @@ Thumbs.db
 
 # Config Files
 /server/config/dev.js
+/src/environments/environment.ts
