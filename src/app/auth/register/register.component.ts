@@ -3,6 +3,7 @@ import { AuthService } from '../shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,11 @@ export class RegisterComponent implements OnInit {
   hide = true;
   errors = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -72,6 +77,10 @@ export class RegisterComponent implements OnInit {
   register(registerForm) {
     this.authService.register(registerForm.value).subscribe(
       (result) => {
+        this.toastr.success(
+          'ログインしてください',
+          'アカウントの作成に成功しました'
+        );
         this.router.navigate(['/login']);
       },
       (err: HttpErrorResponse) => {

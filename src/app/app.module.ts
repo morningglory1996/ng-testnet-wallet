@@ -14,20 +14,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TopComponent,
-    NavComponent
-
-  ],
+  declarations: [AppComponent, TopComponent, NavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      maxOpened: 3,
+    }),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -35,9 +33,9 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatListModule,
     WalletModule,
-    DialogModule
+    DialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
