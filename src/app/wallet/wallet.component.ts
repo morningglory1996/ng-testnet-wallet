@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { WalletService } from './shared/wallet.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -11,6 +10,8 @@ import { UncTxDialogComponent } from '../dialog/unc-tx-dialog/unc-tx-dialog.comp
 import { TxDialogComponent } from '../dialog/tx-dialog/tx-dialog.component';
 import { AddressDialogComponent } from '../dialog/address-dialog/address-dialog.component';
 import { ReceiveDialogComponent } from '../dialog/receive-dialog/receive-dialog.component';
+
+import { WalletService } from './shared/wallet.service';
 
 interface Transaction {
   timeStamp: string;

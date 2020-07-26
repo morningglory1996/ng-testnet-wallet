@@ -1,5 +1,20 @@
 <div *ngIf="wallet" class="grid-container">
-  <h1>{{ userName }}さんのウォレット</h1>
+  <h1>
+    {{ userName }}さんのウォレット
+    <span>
+      <button
+        *ngIf="!(isHandset$ | async)"
+        mat-raised-button
+        (click)="getAddressDetail()"
+        color="primary"
+        matTooltip="ウォレットを更新する"
+        matTooltipPosition="right"
+        style="font-size: 24px;"
+      >
+        <mat-icon style="margin-bottom: 3px;">cached</mat-icon>
+      </button>
+    </span>
+  </h1>
 
   <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 4" rowHeight="400px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -218,6 +233,7 @@
 </div>
 
 <button
+  *ngIf="isHandset$ | async"
   mat-fab
   (click)="getAddressDetail()"
   color="primary"
