@@ -23,7 +23,11 @@ export class SendDialogComponent implements OnInit, OnDestroy {
     Validators.pattern('^[2mn][1-9A-HJ-NP-Za-km-z]{26,35}'),
     this.internalTxValidator.bind(this),
   ]);
-  amount = new FormControl('', [Validators.required, Validators.min(1)]);
+  amount = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+    this.overBalanceValidator.bind(this),
+  ]);
   fee = new FormControl('', [Validators.required]);
   type = new FormControl();
   inputAddress: string;
@@ -69,6 +73,11 @@ export class SendDialogComponent implements OnInit, OnDestroy {
     if (this.amount.hasError('required')) {
       return '送金額を入力してください';
     }
+
+    if (this.amount.hasError('overBalance')) {
+      return '送金額が保有残高を超えています';
+    }
+
     return this.amount.hasError('min')
       ? '送金額は1satoshi以上を入力してください'
       : '';
@@ -115,5 +124,10 @@ export class SendDialogComponent implements OnInit, OnDestroy {
   internalTxValidator(formControl: FormControl): ValidationErrors {
     const result = this.data.address === formControl.value;
     return result ? { internalTx: true } : null;
+  }
+
+  overBalanceValidator(formControl: FormControl): ValidationErrors {
+    const result = formControl.value > this.data.balance;
+    return result ? { overBalance: true } : null;
   }
 }

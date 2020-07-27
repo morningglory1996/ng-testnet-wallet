@@ -51,7 +51,16 @@
     </div>
 
     <div class="radio-container">
-      <p>送金手数料</p>
+      <p>
+        送金手数料
+        <span
+          style="cursor: pointer; color: #6c757d;"
+          matTooltip="トランザクションが承認されるためにキロバイトごとに支払われる手数料です 節約 7ブロック以上 普通 3~6ブロック以内 優先 1~2ブロック以内 "
+          matTooltipPosition="right"
+        >
+          <i class="fas fa-info-circle"></i>
+        </span>
+      </p>
       <mat-radio-group formControlName="fee" [(ngModel)]="feeType">
         <mat-radio-button value="lowFee" [checked]="true">
           節約
