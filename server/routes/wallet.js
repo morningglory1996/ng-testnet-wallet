@@ -136,7 +136,6 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
             const confirmed = moment(txs[i].confirmed)
               .tz("Asia/Tokyo")
               .format("YYYY/MM/DD HH:mm");
-            const fees = txs[i].fees;
             const inputs = txs[i].inputs;
             const outputs = txs[i].outputs;
             let type;
@@ -145,7 +144,7 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
 
             for (let i = 0; i < inputs.length; i++) {
               if (inputs[i].addresses.indexOf(address) != -1) {
-                amount = -(outputs[0].value + fees);
+                amount = -outputs[0].value;
                 type = "send";
                 isSendTx = true;
                 i = inputs.length;
@@ -175,7 +174,6 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
             const received = moment(txs[i].received)
               .tz("Asia/Tokyo")
               .format("YYYY/MM/DD HH:mm");
-            const fees = txs[i].fees;
             const inputs = txs[i].inputs;
             const outputs = txs[i].outputs;
             let type;
@@ -184,7 +182,7 @@ router.get("/:userId", UserCtrl.authMiddleware, async function (req, res) {
 
             for (let i = 0; i < inputs.length; i++) {
               if (inputs[i].addresses.indexOf(address) != -1) {
-                amount = -(outputs[0].value + fees);
+                amount = -outputs[0].value;
                 type = "send";
                 isSendTx = true;
                 i = inputs.length;

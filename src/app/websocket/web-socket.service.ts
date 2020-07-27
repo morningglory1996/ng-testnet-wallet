@@ -72,7 +72,7 @@ export class WebSocketService {
       this.subject.next({
         event: 'ping',
       });
-    }, 50000);
+    }, 30000);
   }
 
   closeWs() {
