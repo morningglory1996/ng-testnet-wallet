@@ -77,7 +77,6 @@ export class WalletComponent implements OnInit {
         mediumFee: this.mediumFee,
         lowFee: this.lowFee,
       },
-      disableClose: true,
       maxWidth: '90vw !important',
     });
   }
@@ -85,7 +84,6 @@ export class WalletComponent implements OnInit {
   receiveDialog(): void {
     this.dialog.open(ReceiveDialogComponent, {
       data: this.address,
-      disableClose: true,
       maxWidth: '90vw !important',
     });
   }
@@ -93,7 +91,6 @@ export class WalletComponent implements OnInit {
   uncTxDialog(): void {
     this.dialog.open(UncTxDialogComponent, {
       data: this.unconfirmed,
-      disableClose: true,
       maxWidth: '90vw !important',
       maxHeight: '500px',
     });
@@ -102,7 +99,6 @@ export class WalletComponent implements OnInit {
   txDialog() {
     this.dialog.open(TxDialogComponent, {
       data: this.transactions,
-      disableClose: true,
       maxWidth: '90vw !important',
       maxHeight: '500px',
     });
@@ -111,7 +107,6 @@ export class WalletComponent implements OnInit {
   addressDialog() {
     this.dialog.open(AddressDialogComponent, {
       data: this.address,
-      disableClose: true,
       maxWidth: '90vw !important',
     });
   }
