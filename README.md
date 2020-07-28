@@ -1,27 +1,40 @@
 # NgTestnetWallet
+Bitcoin Web Wallet for Testnet that uses Angular, Express, Mongo DB.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+![view](https://user-images.githubusercontent.com/62182298/88649140-951bfa80-d102-11ea-816b-e3e333ffbfb8.gif)
 
-## Development server
+## Demo
+This is a DEMO: <https://ng-testnet-wallet.herokuapp.com/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Note: If the server is in sleep mode, it will take longer to boot.
 
-## Code scaffolding
+## Using the app for dev
+1. [Genarate database on MongoDB Atlas and get db URI](https://www.mongodb.com/cloud/atlas) (Used to save users).
+1. [Get BLOCK CYPHER API key](https://www.blockcypher.com/) (Used to get address information and push Tx).
+1. [Get CoinMarketCap API key](https://coinmarketcap.com/api/) (Used to get BTC price).
+1. Genarate two 256bit keys(Used to sign of jwt and encrypt private key).
+1. Create `dev.js` file in `/server/config` and add:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```golang:dev.js
+        module.exports = {
+          DB_URI: "DB URI",
+          SECRET: "256bit key",
+          KEY: "256bit key",
+          BC_TOKEN: " BLOCK CYPHER TOKEN",
+          CMC_TOKEN: "CMC TOKEN"
+        }
+```
+1. Run `npm install`
+1. Run `npm run start-dev` for a frontend server.
+1. Run `npm run express` for a backend server.
+1. Open your browser on `http://localhost:4200/`
 
-## Build
+## Using the app for prod
+1. Set the environment variable in the hosting service with the key written in `/server/config/prod.js` and add a value.
+1. Run `ng build --prod`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Environment
++ Angular CLI version 10.0.0.
+* express version ^4.17.1.
++ mongoose version ^5.9.21.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
