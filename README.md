@@ -38,3 +38,8 @@ Note: If the server is in sleep mode, it will take longer to boot.
 * express version ^4.17.1.
 + mongoose version ^5.9.21.
 
+## Note
+You can get tBTC with the link below:
++ [Yet Another Bitcoin Testnet Faucet! Bech32!](https://testnet-faucet.mempool.co/)
++ [Bitcoin Testnet Faucet](https://bitcoinfaucet.uo1.net/)
+
