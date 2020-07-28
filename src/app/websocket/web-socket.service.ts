@@ -46,7 +46,6 @@ export class WebSocketService {
             );
           }
         }
-        console.log(msg);
       },
       (err) => {
         console.log(err);
