@@ -1,7 +1,6 @@
 # NgTestnetWallet
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
-![2](https://user-images.githubusercontent.com/62182298/88624776-89204080-d0e2-11ea-8316-f1e7b5e5ccaf.gif)
 
 ## Development server
 
