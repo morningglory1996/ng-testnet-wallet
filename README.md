@@ -4,7 +4,7 @@ Bitcoin Web Wallet for Testnet that uses Angular, Express, Mongo DB.
 ![view](https://user-images.githubusercontent.com/62182298/88649140-951bfa80-d102-11ea-816b-e3e333ffbfb8.gif)
 
 ## Demo
-This is a DEMO: <https://ng-testnet-wallet.herokuapp.com/>
+Demo: <https://ng-testnet-wallet.herokuapp.com/>
 
 Note: If the server is in sleep mode, it will take longer to boot.
 
