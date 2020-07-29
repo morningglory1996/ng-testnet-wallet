@@ -16,13 +16,13 @@ Note: If the server is in sleep mode, it will take longer to boot.
 1. Create `dev.js` file in `/server/config` and add:
 
 ```golang:dev.js
-        module.exports = {
-          DB_URI: "DB URI",
-          SECRET: "256bit key",
-          KEY: "256bit key",
-          BC_TOKEN: " BLOCK CYPHER TOKEN",
-          CMC_TOKEN: "CMC TOKEN"
-        }
+module.exports = {
+  DB_URI: "DB URI",
+  SECRET: "256bit key",
+  KEY: "256bit key",
+  BC_TOKEN: " BLOCK CYPHER TOKEN",
+  CMC_TOKEN: "CMC TOKEN"
+}
 ```
 1. Run `npm install`
 1. Run `npm run start-dev` for a frontend server.
