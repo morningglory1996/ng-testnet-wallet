@@ -9,7 +9,7 @@ Demo: <https://ng-testnet-wallet.herokuapp.com/>
 Note: If the server is in sleep mode, it will take longer to boot.
 
 ## Using the app for dev
-1. [Genarate database on MongoDB Atlas and get db URI](https://www.mongodb.com/cloud/atlas) (Used to save users).
+1. [Create database on MongoDB Atlas and get database URI](https://www.mongodb.com/cloud/atlas) (Used to save users).
 1. [Get BLOCK CYPHER API key](https://www.blockcypher.com/) (Used to get address information and push Tx).
 1. [Get CoinMarketCap API key](https://coinmarketcap.com/api/) (Used to get BTC price).
 1. Genarate two 256bit keys(Used to sign jwt and encrypt private key).
