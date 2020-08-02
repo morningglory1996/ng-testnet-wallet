@@ -8,7 +8,7 @@
 <div mat-dialog-content style="text-align: center;">
   <form [formGroup]="sendingForm" (ngSubmit)="openConfirm(sendingForm)">
     <mat-form-field appearance="standard">
-      <p matPrefix>宛先:</p>
+      <label matPrefix>宛先:</label>
       <input
         matInput
         formControlName="recipient"
@@ -31,7 +31,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="standard">
-      <p matPrefix>送金額:</p>
+      <label matPrefix>送金額:</label>
       <input
         matInput
         [(ngModel)]="inputAmount"
@@ -54,7 +54,7 @@
     </div>
 
     <div class="radio-container">
-      <p>
+      <label>
         送金手数料
         <span
           style="cursor: pointer; color: #6c757d;"
@@ -63,19 +63,21 @@
         >
           <i class="fas fa-info-circle"></i>
         </span>
-      </p>
-      <mat-radio-group formControlName="fee" [(ngModel)]="feeType">
-        <mat-radio-button value="lowFee" [checked]="true">
-          節約
-        </mat-radio-button>
-        <mat-radio-button value="mediumFee">
-          普通
-        </mat-radio-button>
-        <mat-radio-button value="highFee">
-          優先
-        </mat-radio-button>
-        <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
-      </mat-radio-group>
+      </label>
+      <div>
+        <mat-radio-group formControlName="fee" [(ngModel)]="feeType">
+          <mat-radio-button value="lowFee" [checked]="true">
+            節約
+          </mat-radio-button>
+          <mat-radio-button value="mediumFee">
+            普通
+          </mat-radio-button>
+          <mat-radio-button value="highFee">
+            優先
+          </mat-radio-button>
+          <mat-error *ngIf="fee.invalid">{{ feeErrorMessage() }}</mat-error>
+        </mat-radio-group>
+      </div>
     </div>
 
     <input formControlName="type" type="hidden" [(ngModel)]="feeType" />
