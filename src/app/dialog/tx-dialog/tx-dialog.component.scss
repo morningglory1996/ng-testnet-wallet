@@ -28,3 +28,16 @@ td {
 .mat-icon {
   margin-left: 4px;
 }
+
+.confirmed-badge {
+  color: #fff;
+  background-color: #2962ff;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.no-tx-msg {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}

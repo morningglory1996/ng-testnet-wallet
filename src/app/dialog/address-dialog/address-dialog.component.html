@@ -1,8 +1,11 @@
-<button mat-button (click)="close()" style="float: right;">
-  <mat-icon>close</mat-icon>
-</button>
-<h2 mat-dialog-title>あなたのアドレス</h2>
+<header>
+  <button mat-button (click)="close()" style="float: right;">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h2 mat-dialog-title>あなたのアドレス</h2>
+</header>
+
 <div mat-dialog-content style="text-align: center;">
   <qrcode [qrdata]="data" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-  <h3 style="margin-bottom: 0; word-wrap: break-word;">{{ data }}</h3>
+  <h3 class="address">{{ data }}</h3>
 </div>

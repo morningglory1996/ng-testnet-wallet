@@ -1,7 +1,10 @@
-<button mat-button (click)="close()" style="float: right;">
-  <mat-icon>close</mat-icon>
-</button>
-<h2 mat-dialog-title>ビットコインを送る</h2>
+<header>
+  <button mat-button (click)="close()" style="float: right;">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h2 mat-dialog-title>ビットコインを送る</h2>
+</header>
+
 <div mat-dialog-content style="text-align: center;">
   <form [formGroup]="sendingForm" (ngSubmit)="openConfirm(sendingForm)">
     <mat-form-field appearance="standard">
