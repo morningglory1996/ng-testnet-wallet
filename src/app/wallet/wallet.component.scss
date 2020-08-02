@@ -12,6 +12,79 @@
   margin: 0 auto;
 }
 
+.card-address {
+  border-left: 5px solid #1582ad;
+  height: 100%;
+
+  .qrcode {
+    color: #1582ad;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .card-icon {
+    background-color: #1582ad;
+    color: white;
+  }
+
+  button {
+    background: #1582ad;
+
+    .mat-icon {
+      color: white;
+    }
+  }
+}
+
+.card-balance {
+  border-left: 5px solid #02ad9c;
+  height: 100%;
+
+  a {
+    color: #02ad9c;
+    cursor: pointer;
+  }
+
+  .card-icon {
+    background: #02ad9c;
+    color: white;
+  }
+
+  .span-hrs {
+    font-size: smaller;
+    color: #a8abaf;
+  }
+}
+
+.card-send-receive {
+  border-left: 5px solid #6685ff;
+  height: 100%;
+
+  .card-icon {
+    background: #6685ff;
+    color: white;
+  }
+
+  p {
+    margin: 0 0;
+    color: #7c7f83;
+  }
+
+  .btn-sendReceive {
+    color: #6685ff;
+  }
+}
+
+.card-transactions {
+  border-left: 5px solid #113045;
+  height: 100%;
+
+  .card-icon {
+    background-color: #113045;
+    color: white;
+  }
+}
+
 .more-button {
   position: absolute;
   top: 5px;
