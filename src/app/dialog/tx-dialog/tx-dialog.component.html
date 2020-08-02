@@ -1,8 +1,11 @@
-<div class="container">
+<header>
   <button mat-button (click)="close()" style="float: right;">
     <mat-icon>close</mat-icon>
   </button>
   <h2 mat-dialog-title>トランザクション</h2>
+</header>
+
+<div *ngIf="data.length > 0">
   <table
     [style.table-layout]="(isHandset$ | async) ? 'fixed' : 'auto'"
     mat-table
@@ -32,7 +35,7 @@
           >{{ element.txId }}
         </a>
         <div>
-          <span class="badge" style="background: #2962ff; color: white;">
+          <span class="confirmed-badge">
             {{ element.confirmations }} confirmations
           </span>
         </div>
@@ -60,4 +63,8 @@
     [pageSizeOptions]="[5, 10]"
     showFirstLastButtons
   ></mat-paginator>
+</div>
+
+<div *ngIf="data.length === 0" class="no-tx-msg">
+  <p>トランザクションはありません</p>
 </div>

@@ -91,6 +91,7 @@ export class WalletComponent implements OnInit {
   uncTxDialog(): void {
     this.dialog.open(UncTxDialogComponent, {
       data: this.unconfirmed,
+      minWidth: '400px',
       maxWidth: '90vw !important',
       maxHeight: '500px',
     });
@@ -99,6 +100,7 @@ export class WalletComponent implements OnInit {
   txDialog() {
     this.dialog.open(TxDialogComponent, {
       data: this.transactions,
+      minWidth: '400px',
       maxWidth: '90vw !important',
       maxHeight: '500px',
     });
