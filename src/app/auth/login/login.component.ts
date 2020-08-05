@@ -44,14 +44,16 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginForm) {
-    this.authService.login(loginForm.value).subscribe(
-      (result) => {
-        this.webSocketService.connectWs(result.decodedToken.address);
-        this.router.navigate(['/wallet/' + result.decodedToken.userId]);
-      },
-      (err: HttpErrorResponse) => {
-        this.errors = err.error.errors;
-      }
-    );
+    if (this.loginForm.valid) {
+      this.authService.login(loginForm.value).subscribe(
+        (result) => {
+          this.webSocketService.connectWs(result.decodedToken.address);
+          this.router.navigate(['/wallet/' + result.decodedToken.userId]);
+        },
+        (err: HttpErrorResponse) => {
+          this.errors = err.error.errors;
+        }
+      );
+    }
   }
 }
