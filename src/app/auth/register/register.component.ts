@@ -75,17 +75,19 @@ export class RegisterComponent implements OnInit {
   }
 
   register(registerForm) {
-    this.authService.register(registerForm.value).subscribe(
-      (result) => {
-        this.toastr.success(
-          'ログインしてください',
-          'アカウントの作成に成功しました'
-        );
-        this.router.navigate(['/login']);
-      },
-      (err: HttpErrorResponse) => {
-        this.errors = err.error.errors;
-      }
-    );
+    if (this.registerForm.valid) {
+      this.authService.register(registerForm.value).subscribe(
+        (result) => {
+          this.toastr.success(
+            'ログインしてください',
+            'アカウントの作成に成功しました'
+          );
+          this.router.navigate(['/login']);
+        },
+        (err: HttpErrorResponse) => {
+          this.errors = err.error.errors;
+        }
+      );
+    }
   }
 }
