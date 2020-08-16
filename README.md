@@ -18,6 +18,7 @@
 + Angularの理解不足で、Componentを作成しすぎてしまったと感じた。もっとServiceを利用して機能を共有できるところはするべきだった
 + 全体的に可読性の低いコードになってしまった。要所要所にコメントをつける癖が必要であると思った
 + テストコードの実装、CIの導入を行い一連の過程を自動化を行いたかった。今後実装したい
++ Rxjsの理解がもっと必要である
 
 # NgTestnetWallet
 Bitcoin Web Wallet for Testnet that uses Angular, Express, Mongo DB.
